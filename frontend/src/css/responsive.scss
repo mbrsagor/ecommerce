@@ -1,0 +1,86 @@
+.login_parent{
+    .login_warp {
+        a{
+            img{
+                max-width: 150px;
+            }
+        }
+    }
+}
+
+.btn-x{
+    margin-top: 31px;
+}
+
+@media (max-width: 1200px){
+  .hero_left h1, h2 {
+        font-size: 36px;
+        line-height: 46px;
+    }
+    .features-3 h2 {
+        font-size: 30px;
+    }
+    #wrapper {
+        display: block;
+        overflow: hidden;
+    }
+}
+
+@media (max-width: 992px){
+
+    .content_area{
+        width: 100%;
+    }
+    .navbar-nav{
+        position: relative;
+        width: 100%;
+        max-width: 100%;
+    }
+    .sidebar_brand{
+        padding: 20px;
+        img{
+            max-width: 150px;
+        }
+    }
+    .sidebar{
+        z-index: 9;
+        .main_menu .menu_icon {
+            right: 30px;
+            top: 30px;
+            color: #fff;
+        }
+    }
+    .main_nav {
+        height: 100%;
+        overflow-x: hidden;
+    }
+    .footer_widget{
+        margin-bottom: 30px;
+    }
+    .dash-card{
+        padding: 20px;
+    }
+    .card-body .table td,
+    .card-body .table thead {
+        padding: 0 12px;
+        text-align: center;
+    }
+    .order_history_main{
+        select{
+            &.form-control{
+                margin: 15px 0;
+            }
+        }
+    }
+}
+@media (max-width: 768px){
+    .footer_widget{
+        text-align: center;
+    }
+    .live_order_tab_section .nav_tabs .nav-item {
+        margin-bottom: 25px;
+        .nav-link{
+            padding: 10px;
+        }
+    }
+}

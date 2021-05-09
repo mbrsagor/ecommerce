@@ -1,0 +1,326 @@
+
+ul,li{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+// header 
+.header-sec {
+    padding: 28px 0;
+    box-shadow: 0 15px 50px rgba(0, 0, 0,  0.05);
+}
+
+
+.main_menu{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    .logo{
+        max-width: 150px;
+        a{
+            display: inline-block;
+            img{
+                width: 100%;
+            }
+        }
+        
+    }
+    .menu_icon{
+        position: relative;
+        width: 32px;
+        height: 32px;
+        display: block;
+        color: #131313;
+        display: none;
+        span,
+        &::after,
+        &::before{
+            content: "";
+            position: absolute;
+            background: currentColor;
+            transition: all 0.2s;
+            width: 24px;
+            height: 2px;
+            left: 4px;
+        }
+        &::before{
+            top: 8px;
+        }
+        &::after{
+            bottom: 8px;
+        }
+        > span{
+            top: 50%;
+            margin-top: -1px;
+            width: 20px;
+        }
+
+        &.close{
+            > span{
+               opacity: 0;
+                visibility: hidden;
+            }
+            &::before,
+            &::after {
+                width: 28px;
+                left: 2px;
+            }
+            &::before {
+                transform: rotate(45deg);
+                top: 15px;
+            }
+            &::after{
+                transform: rotate(-45deg);
+                bottom: 15px;
+            }
+        }
+    }
+    .navbar{
+        padding: 0;
+    }
+    ul{
+        margin: 0;
+        li {
+            display: inline-block;
+            padding: 15px 10px;
+            a {
+                color: #071c4d;
+                transition: .6s;
+                &:hover {
+                    color: #f05a22;
+                }
+            }
+            
+        }
+    }
+}
+
+
+.help_link {
+    ul{
+        margin: 0;
+        li {
+            display: inline-block;
+            padding: 15px 10px;
+            a {
+                color: #071c4d;
+                transition: .6s;
+            }
+        }
+    }
+}
+
+.free_trail {
+    background: orange;
+    padding: 6px 15px !important;
+    border-radius: 6px !important;
+    a{
+        color: #fff !important;
+    }
+}
+
+@media (max-width: 992px){
+    .main_menu{
+        display: block;
+        .menu_icon{
+            display: block;
+            position: absolute;
+            right: 0;
+            top: 12px;
+        }
+        .menu{
+            background: #fff;
+            ul{
+                li{
+                    display: block;
+                }
+            }
+            .mobile-link{
+                ul{
+                    li{
+                        display: inline-block;
+                    }
+                }
+            }
+        }
+        .mobile-link{
+            ul{
+                li{
+                    padding: 0;
+                    margin-right: 15px;
+                    a{
+                        border-radius: 4px;
+                        border: 1px solid #eee;
+                        display: block;
+                        padding: 10px 25px;
+                    }
+                    &.free_trail{
+                        padding: 0 !important;
+                    }
+                }
+            }
+        }
+    }
+}
+// Hero
+.hero_left h1, h2 {
+    font-size: 48px ;
+    font-weight: 600;
+    line-height: 1.3;
+    color: #000;
+}
+
+.hero_left h2 {
+    color: orange !important;
+}
+
+.hero_right img {
+    width: 100%;
+}
+
+.hero_left {
+    ul{
+        padding-left: 20px;
+        li {
+            font-size: 17px;
+            margin-bottom: 4px;
+            list-style-type: disc;
+        }
+    }
+}
+.hero_button {
+    background: orange;
+    color: #fff;
+    padding: 15px 30px;
+    font-size: 18px;
+    border-radius: 10px;
+}
+
+// Footer
+.footer-sec{
+    padding: 80px 0;
+}
+footer {
+    background: #f05a22;
+    color: #fff;
+    a {
+        color: #ece4e4;
+    }
+    a:hover {
+        color: #fff;
+    }
+    .widget_title {
+        font-size: 18px;
+        font-weight: 600;
+    }
+}
+
+.footer_widget ul li {
+    padding-bottom: 5px;
+}
+
+.footer-bottom {
+    background: #e24d25 !important;
+}
+
+// Footer top
+.footerTop {
+    background: $secondary_color;
+    background-image: url('https://www.chatfood.io/assets/images/footer-decor/footer-bg.svg');
+    background-size: cover;
+    color: white;
+    h2{
+        color: white;
+        font-size: 40px;
+        margin-bottom: 0;
+    }
+   .form-wrap{
+       position: relative;
+        input {
+            padding: 10px 20px;
+            width: 100%;
+            margin-right: 10px;
+            height: 55px;
+            border-radius: 8px;
+            border: 1px solid #f05a22;
+        }
+
+        .submit-btn {
+            background: #f05a22;
+            color: white;
+            padding: 2px 15px 4px;
+            border-radius: 4px;
+            position: absolute;
+            right: 5px;
+            top: 0;
+            bottom: 0;
+            line-height: .8;
+            margin: 5px auto;
+            text-transform: capitalize;
+        }
+   }
+}
+
+//Feature
+.feature-item {
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.1);
+    transition: .6s;
+    padding: 25px;
+    margin-bottom: 40px;
+    img{
+        width: 50px;
+        margin-left: 0;
+        height: 50px !important;
+        margin-right: auto;
+        margin-bottom: 20px;
+    }
+    h3 {
+        font-size: 20px;
+        text-align: left;
+    }
+    p {
+        text-align: left;
+    }
+    svg {
+        padding: 10px;
+        background: #f9fafe;
+        border-radius: 50%;
+        text-align: center;
+        transition: .6s;
+    }
+}
+
+.feature-item:hover {
+    box-shadow: 2px 2px 2px 1px rgba(0.4, 0.4, 0.4, 0.4);
+    svg {
+        background: #f05a22;
+        color: #fff;
+    }
+}
+
+// features-1
+.features-1 {
+    img {width:100%}
+    h1{
+        font-size: 45px ;
+        font-weight: 600;
+        line-height: 1.3;
+        color: #000;
+    }
+    a {
+        color: #fff;
+        background: $primary_color;
+        padding: 15px 30px;
+        border-radius: 10px;
+    }
+    a:hover {
+        background: $secondary_color;
+    }
+}
+
+// features-3
+.features-3 h2 {
+    font-size: 40px;
+}

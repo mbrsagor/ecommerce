@@ -1,0 +1,43 @@
+version: "3"
+services:
+  db:
+    container_name: onno-db
+    image: postgres:13
+    volumes:
+      - onno-db:/var/lib/postgresql/data
+    restart: always
+    environment:
+      - POSTGRES_USER=onnouser
+      - POSTGRES_PASSWORD=123456
+      - POSTGRES_DB=onno
+    ports:
+      - 5433:5432
+  backend:
+    container_name: onno-backend
+    build: ./backend
+    command: >
+      sh -c "python manage.py collectstatic --noinput &&
+             python manage.py migrate &&
+             python manage.py runserver 0.0.0.0:8000"
+    volumes:
+      - ./backend:/app/
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+  frontend:
+    build: ./frontend
+    command: yarn start
+    container_name: onno-frontend
+    volumes:
+      - ./frontend:/app/
+      - /app/node_modules
+    ports:
+      - 3000:3000
+    env_file:
+      - .env
+    depends_on:
+      - backend
+volumes:
+  onno-db:
+    driver: local

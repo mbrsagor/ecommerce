@@ -1,0 +1,30 @@
+.icon_image {
+    width: 50px;
+    border: 1px dashed #666;
+    height: 50px;
+}
+
+.filelabel {
+    width: 120px;
+    border: 1px dashed grey;
+    border-radius: 5px;
+    display: block;
+    padding: 5px;
+    transition: border 300ms ease;
+    cursor: pointer;
+    text-align: center;
+    margin: 0;
+}
+.filelabel i {
+    display: block;
+    font-size: 30px;
+    padding-bottom: 5px;
+}
+.filelabel i,
+.filelabel .title {
+  color: grey;
+  transition: 200ms color;
+}
+#FileInput{
+    display:none;
+}

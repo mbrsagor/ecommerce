@@ -1,0 +1,251 @@
+.border {
+  border: 1px solid #e8e9ea;
+}
+.rounded {
+  border-radius: 0.25rem !important;
+}
+.border {
+  border: 1px solid #dee2e6 !important;
+}
+
+.p_bottom_0 {
+  padding-bottom: 0 !important;
+}
+.p-4 {
+  padding: 1rem !important;
+}
+.loading-zone {
+  position: static;
+}
+.loading-zone {
+  position: static;
+}
+
+// .minw-140 {
+//     min-width: 140px;
+// }
+.m-0 {
+  margin: 0 !important;
+}
+
+.table-responsive > .table-bordered {
+  border: 0;
+  border-top-color: initial;
+  border-top-style: initial;
+  border-top-width: 0px;
+  border-right-color: initial;
+  border-right-style: initial;
+  border-right-width: 0px;
+  border-bottom-color: initial;
+  border-bottom-style: initial;
+  border-bottom-width: 0px;
+  border-left-color: initial;
+  border-left-style: initial;
+  border-left-width: 0px;
+  border-image-source: initial;
+  border-image-slice: initial;
+  border-image-width: initial;
+  border-image-outset: initial;
+  border-image-repeat: initial;
+}
+
+// .row {
+//     display: -webkit-box;
+//     display: -ms-flexbox;
+//     display: flex;
+//     -ms-flex-wrap: wrap;
+//     flex-wrap: wrap;
+//     margin-right: -12.5px;
+//     margin-left: -12.5px;
+// }
+.loading-zone {
+  position: static;
+}
+
+.table-responsive {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-bordered,
+.table-bordered td,
+.table-bordered th {
+  border: 1px solid #dee2e6;
+}
+.table {
+  width: 100%;
+  margin-bottom: 1rem;
+  color: #212121;
+}
+.table tr {
+  -webkit-transition: all 0.2s ease-out;
+  transition: all 0.2s ease-out;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+thead {
+  display: table-header-group;
+  vertical-align: middle;
+  border-color: inherit;
+}
+
+tr {
+  display: table-row;
+  vertical-align: inherit;
+  border-color: inherit;
+}
+
+.table:not(.table-sm):not(.table-md):not(.dataTable) th {
+  padding: 10px 15px;
+  height: 60px;
+  vertical-align: middle;
+}
+
+.order_history_main {
+  input {
+    border: 1px solid #dfe3e7;
+  }
+}
+
+.orderTabContent {
+  .table {
+    tr {
+      height: 50px;
+    }
+
+    th,
+    td {
+      padding: 0 15px !important;
+      height: 50px !important;
+      vertical-align: middle;
+    }
+  }
+}
+
+// Order delivery
+.contact_menu_btn {
+  color: #e24d25 !important;
+}
+///////////// Joy ////////////////
+.order-main-content {
+  height: calc(100vh - 107px);
+  position: relative;
+}
+///////////// Joy ////////////////
+.img-container {
+  margin: 50px 0;
+  background: #ddd;
+  height: 380px;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}
+
+.order_content {
+  margin-top: 80px;
+
+  h2 {
+    color: red;
+    font-weight: 300;
+    font-size: 40px;
+  }
+  p {
+    font-size: 15px;
+  }
+}
+
+.order_footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  background: #e24d25;
+
+  p {
+    color: white;
+  }
+}
+
+.order-popup-container {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  z-index: 999;
+  display: flex;
+  align-items: flex-end;
+}
+
+.order-popup {
+  // padding: 25px 20px;
+  box-shadow: 0 3px 10px rgba($color: #000000, $alpha: 0.2);
+  background-color: white;
+  width: 300px;
+  border-radius: 10px 10px 0 10px;
+  position: relative;
+  overflow: hidden;
+
+  .popup-header {
+    padding: 20px 20px 0 20px;
+  }
+
+  h5 {
+    color: #f05a22;
+    width: 90%;
+    text-align: left;
+  }
+
+  p {
+    width: 90%;
+    text-align: left;
+    padding: 0 20px;
+  }
+
+  button.btnClose {
+    width: 25px;
+    height: 25px;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f05a22;
+    color: #ffffff;
+    border-radius: 50%;
+
+    span {
+      position: relative;
+      top: -1px;
+      font-size: 20px;
+    }
+  }
+
+  .popup-footer {
+    padding: 20px;
+    background-color: #f5f5f5;
+  }
+}
+
+.floating-btn {
+  width: 50px;
+  height: 50px;
+  margin-left: 15px;
+  border: 0 !important;
+  box-shadow: 0 3px 6px rgba($color: #000000, $alpha: 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}

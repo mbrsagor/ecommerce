@@ -1,0 +1,136 @@
+.branding-wrap {
+  .card {
+    border-radius: 10px;
+  }
+}
+
+.preview-container {
+  width: 100%;
+  // height: 100%;
+  background-color: #f5f5f5;
+  border-radius: 20px;
+  padding: 30px 0;
+
+  button {
+    cursor: no-drop !important;
+  }
+
+  h5 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .preview-box {
+    .card {
+      width: 300px;
+      border-radius: 20px;
+      border: 5px solid #999;
+      overflow: hidden;
+      margin: 0 auto;
+
+      .card-img-top {
+        height: 160px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #fafafa;
+        border-bottom: 1px solid #eee;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: center;
+        }
+      }
+    }
+  }
+}
+.demo-container {
+  margin-top: 20px;
+
+  .img {
+    width: 60px;
+    height: 45px;
+    background-color: #ddd;
+    display: block;
+  }
+}
+.demo-text {
+  width: 100%;
+
+  .line {
+    width: 100%;
+    height: 5px;
+    background-color: #ddd;
+    margin-bottom: 6px;
+
+    &.line-lg {
+      width: 80%;
+    }
+    &.line-md {
+      width: 70%;
+    }
+    &.line-sm {
+      width: 60%;
+    }
+    &.line-xs {
+      width: 50%;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+.ctg-list {
+  margin-top: 15px;
+
+  small {
+    padding: 6px 10px;
+    border-radius: 30px;
+
+    &:nth-child(n + 2) {
+      opacity: 0.7;
+      border: 1px solid rgba($color: #000000, $alpha: 0.1);
+      margin-left: 10px;
+    }
+  }
+}
+
+.deliver-content {
+  .btn-group {
+    widows: auto;
+    // overflow: hidden;
+
+    .btn-sm {
+      line-height: 20px;
+      padding: 0 8px;
+    }
+  }
+}
+
+.overlay {
+  position: relative;
+  width: 100%;
+  height: 100%;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba($color: #ffffff, $alpha: 0.001);
+    z-index: 1;
+  }
+}
+
+// .............
+.preview-widget {
+  width: 400px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-end;
+}

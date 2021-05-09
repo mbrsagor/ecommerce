@@ -1,0 +1,53 @@
+.discount_intro {
+    max-width: 450px;
+    margin: auto;
+    h4 {
+        font-size: 18px;
+        color: #444;
+        margin-bottom: 10px;
+    }
+    p {
+        color: #89a0b1;
+        padding-bottom: 15px;
+    }
+    svg {
+        margin-bottom: 35px;
+    }
+    .learn_more {
+        color: #89a0b1;
+    }
+}
+
+.dicount_from {
+    button {
+        margin-top: 30px;
+        position: relative;
+    }
+    label {
+        font-weight: 500;
+    }
+    h2 {
+        font-size: 22px;
+        color: #444;
+    }
+    
+}
+
+.discount_application {
+    .form-check-label {
+        color: #89a0b1 !important;
+    }
+
+    input[type=radio] {
+        margin-top: 25px;
+    }
+
+    input[type=checkbox]{
+        margin-right: 11px;
+    }
+}
+.discount-box {
+    .form-check input[type=radio] {
+        margin-top: 4px;
+    }
+}

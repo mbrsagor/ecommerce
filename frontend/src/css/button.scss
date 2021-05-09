@@ -1,0 +1,94 @@
+.btn-rounded-light {
+  font-size: 11px;
+  border-radius: 12px;
+  padding: 8px 10px;
+  background: #fff;
+  border: 1px solid #e3eaef;
+}
+.btn-rounded-light:hover {
+  background: #b9c0c5;
+}
+
+.text-primary {
+  color: rgb(55, 55, 180);
+}
+
+.btn-primary {
+  background: $primary_color !important;
+  color: white;
+  border: 0;
+}
+.btn-primary:hover {
+  background: #da501e !important;
+  border: 0;
+}
+
+.btn-primary:active {
+  background: $primary_color !important;
+  border: 0;
+}
+.btn-primary:visited {
+  background: $primary_color !important;
+  border: 0;
+}
+.btn-primary:focus {
+  background-color: $primary_color;
+  border: 0;
+}
+
+.btn-primary,
+.btn-primary.focus,
+.btn-primary:focus {
+  box-shadow: none;
+  // box-shadow: 0 0 0 0.2rem white;
+}
+
+.btn-primary.focus,
+.btn-primary:focus {
+  box-shadow: none !important;
+}
+
+.btn-outline-primary-custom {
+  border: 1px solid $primary_color;
+  color: $primary_color;
+  background-color: white;
+  font-weight: bold;
+  font-size: 14px;
+}
+.btn-outline-primary-custom:hover {
+  background: $primary_color;
+  color: white;
+  border: 1px solid $primary_color;
+}
+.btn-outline-primary-custom.active {
+  background: $primary_color;
+  color: white;
+  border: 1px solid $primary_color;
+}
+
+.btn-outline-primary-custom,
+.btn-outline-primary-custom.focus,
+.btn-outline-primary-custom:focus {
+  box-shadow: 0 0 0 0.2rem white;
+}
+.btn-outline-custom {
+  background: white;
+  border: 1px solid $primary_color;
+  color: $primary_color;
+  height: 45px;
+  width: 220px;
+  text-align: center;
+  padding: 10px 10px 20px 10px;
+  font-weight: 600;
+  border-radius: 4px;
+}
+.btn-outline-custom:hover {
+  background-color: $primary_color;
+  color: white;
+}
+
+.btn-outline-custom,
+.btn-outline-custom.focus,
+.btn-outline-custom:focus {
+  box-shadow: 0 0 0 0.2rem white;
+}
