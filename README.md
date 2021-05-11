@@ -3,6 +3,7 @@
 ### Run Onno containers
 ## For Set up
 ```
+touch .env
 docker-compose build
 docker-compose up
 ```
@@ -10,7 +11,6 @@ docker-compose up
 After waiting for while, visit following urls:
 
 * UI: http://localhost:3000
-* API documentation: http://localhost:3010/api/docs
 * Backend: http://localhost:8000
 
 ## Git branching model
