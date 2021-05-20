@@ -9,13 +9,13 @@ The following steps will walk you thru installation on a Mac. I think linux shou
 - NPM 
 - `npx create-next-app` CLI install
 
+
+Open on your base or terminal then follow the command
 ```bash
 cd https://github.com/mbrsagor/fb-clone.git
 cd fb-clone
-npm install
-npm run dev
-# or
-yarn dev
+yarn install
+yarn run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
