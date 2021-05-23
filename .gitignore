@@ -8,3 +8,4 @@ migrations/
 media
 .DS_Store
 staticfiles
+.vscode
