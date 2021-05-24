@@ -14,3 +14,15 @@ PARTNER_NOT_FOUND_MSG = _("Partner ID Not Found")
 PHONE_NUMBER_ERROR_MSG = _("Phone number is not valid")
 
 FILE_VALIDATION_ERROR_MSG = _("Please input Base64 valid data.")
+from enum import IntEnum
+
+
+class RELATIONSHIPSTATUS(IntEnum):
+    SINGLE = 0
+    MARRIED = 1
+    RELATIONSHIP = 2
+    OTHRS = 3
+
+    @classmethod
+    def get_choices(cls):
+        return [(key.value, key.name) for key in cls]
