@@ -40,7 +40,8 @@ DEFAULT_APPS = [
 ]
 
 LOCAL_APPS = [
-    'accounts'
+    'accounts',
+    'post',
 ]
 
 INSTALLED_APPS = DEFAULT_APPS + LOCAL_APPS
