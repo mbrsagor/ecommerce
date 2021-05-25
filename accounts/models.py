@@ -12,7 +12,6 @@ class BaseModel(models.Model):
 class UserProfile(BaseModel):
     user = models.OneToOneField(User, related_name="user", on_delete=models.CASCADE)
     bio = models.CharField(max_length=120, blank=True, null=True)
-    nick_name = models.CharField(max_length=50, blank=True, null=True)
     birthday = models.DateField(blank=True, default='2004-12-01')
     town = models.CharField(blank=True, max_length=120)
     relationship = models.IntegerField(RELATIONSHIPSTATUS.get_choices(), default=RELATIONSHIPSTATUS.SINGLE.value)
