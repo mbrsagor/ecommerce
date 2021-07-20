@@ -31,3 +31,8 @@ After that run the project in your local or live server development platform.
 ./manage.py migrate
 ./manage.py runserver
 ```
+
+###### If postgress related error pls follow below the:
+```bash
+pip install psycopg2-binary
+```
