@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from django.db import models
 from django.shortcuts import reverse
-from utils.enum import RELATIONSHIPSTATUS
+from utils.enum import RelationShipStatus
 
 
 class BaseModel(models.Model):
@@ -14,7 +14,7 @@ class UserProfile(BaseModel):
     bio = models.CharField(max_length=120, blank=True, null=True)
     birthday = models.DateField(blank=True, default='2004-12-01')
     town = models.CharField(blank=True, max_length=120)
-    relationship = models.IntegerField(RELATIONSHIPSTATUS.get_choices(), default=RELATIONSHIPSTATUS.SINGLE.value)
+    relationship = models.IntegerField(RelationShipStatus.get_choices(), default=RelationShipStatus.SINGLE.value)
     relation_user = models.ManyToManyField('self', blank=True, related_name='relationship')
     visible_name = models.CharField(blank=True, max_length=128)
     url = models.CharField(blank=True, max_length=150)
