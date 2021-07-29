@@ -9,4 +9,4 @@ class UserProfileSerializer(serializers.ModelSerializer):
             'id', 'user', 'birthday', 'bio', 'town', 'relationship', 'relation_user', 'visible_name', 'url', 'friends',
             'friend_requests', 'profile_picture', 'cover_picture', 'created'
         ]
-        read_only_fields = ('user',)
+        read_only_fields = ('id', 'user',)
