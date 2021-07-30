@@ -8,7 +8,7 @@ class UserProfileSerializer(serializers.ModelSerializer):
         model = UserProfile
         fields = [
             'id', 'user', 'birthday', 'bio', 'town', 'relationship', 'relation_user', 'nick_name', 'url', 'friends',
-            'friend_requests', 'profile_picture', 'cover_picture', 'created'
+            'full_name', 'friend_requests', 'profile_picture', 'cover_picture', 'created'
         ]
         read_only_fields = ('user',)
 
