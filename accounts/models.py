@@ -15,7 +15,7 @@ class UserProfile(BaseModel):
     town = models.CharField(blank=True, max_length=120)
     relationship = models.IntegerField(RelationShipStatus.get_choices(), default=RelationShipStatus.SINGLE.value)
     relation_user = models.ManyToManyField('self', blank=True, related_name='relationship')
-    visible_name = models.CharField(blank=True, max_length=128)
+    nick_name = models.CharField(blank=True, max_length=128)
     url = models.CharField(blank=True, max_length=150)
     friends = models.ManyToManyField('self', blank=True, related_name='friends')
     friend_requests = models.ManyToManyField('self', blank=True, related_name='friend_requests')
