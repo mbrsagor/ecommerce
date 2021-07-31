@@ -22,5 +22,11 @@ class ProfileAPIView(views.APIView):
             serializer = UserSerializer(user)
             return Response(serializer.data, status=self.status_code)
 
-    def put(self, request, pk):
-        pass
+    def patch(self, request, user):
+        user = self.request.user.id
+        user_profile = UserProfile.objects.get(user_id=user)
+        serializer = UserProfileSerializer(user_profile)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_204_NO_CONTENT)
