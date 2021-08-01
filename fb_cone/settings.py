@@ -47,6 +47,7 @@ DEFAULT_APPS = [
 
 LOCAL_APPS = [
     'accounts',
+    'status',
 ]
 
 THIRD_PARTY_APPS = [
