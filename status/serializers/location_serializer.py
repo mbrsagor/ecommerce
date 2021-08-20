@@ -1,7 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 
-from status.models.post import Location
+from status.models import Location
 
 
 class LocationSerializer(serializers.ModelSerializer):
