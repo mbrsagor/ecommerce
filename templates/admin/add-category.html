@@ -5,144 +5,150 @@
 
 {% block body %}
 
-         <!-- Right Side Content Start -->
-         <section id="content" class="seipkon-content-wrapper">
-            <div class="page-content">
-               <div class="container-fluid">
-                  <!-- message framework -->
-                  {% if messages %}
-                   <div class="messages">
-                       {% for message in messages %}
-                       <div style="color:#f00; text-align:center, font-size:20px" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
-                       {% endfor %}
-                   </div>
-                 {% endif %}
-                 <!-- end message framework -->
-
-                 <div class="row">
-                   <div class="col-lg-4">
-                      <button type="button" class="btn btn-success" data-toggle="modal"data-target="#modal-primary" data-backdrop="static", data-keyboard="false"><i class="fa fa-plus"></i> Add Color</button>
-                   </div>
-                   <div class="col-lg-4">
-                     <!-- message framework -->
-                     {% if messages %}
-                      <div class="messages">
-                          {% for message in messages %}
-                          <div class="message_text">{{ message }}</div>
-                          {% endfor %}
-                      </div>
-                    {% endif %}
-                    <!-- end message framework -->
-                   </div>
-                   <div class="col-lg-4 text-right">
-                     <div class="searchForm">
-                       <form method="GET">
-                         {% csrf_token %}
-                         <input type="text" name="search_item" placeholder="search...">
-                         <button type="submit" name="button"><i class="fa fa-search"></i></button>
-                       </form>
-                     </div>
-                   </div>
-                 </div>
-
-                 <!-- .modal -->
-                 <div class="modal  fade" id="modal-primary">
-                   <div class="modal-dialog">
-                     <div class="modal-content">
-                       <div class="modal-header">
-                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                           <span aria-hidden="true">&times;</span></button>
-                         <h4 class="modal-title">Category From</h4>
-                       </div>
-                       <form method="POST">
-                        {% csrf_token %}
-                       <div class="modal-body">
-                         <div class="form-group">
-                           <label class="control-label">Category Name :</label>
-                           {{ category_form.name }}
-                          </div>
-                          <div class="form-group">
-                             <label class="control-label">Category Title (Optional) :</label>
-                             {{ category_form.category_title }}
-                          </div>
-                          <div class="form-group">
-                             <label class="control-label">Category image URL (Optional) :</label>
-                             {{ category_form.category_image }}
-                          </div>
-                       </div>
-                       <div class="modal-footer">
-                          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                          <button type="submit" class="btn btn-success">Save</button>
-                        </div>
-                        </form>
-                     </div>
-                     <!-- /.modal-content -->
-                   </div>
-                   <!-- /.modal-dialog -->
-                 </div>
-                 <!-- /.modal -->
-
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="page-box">
-                        <div class="page-box">
-                           <table id="invoice-list" class="table display table-hover">
-                             <thead>
-                                <tr>
-                                   <th>Sl</th>
-                                   <th>Category Name</th>
-                                   <th>Category Image</th>
-                                   <th>Create Date</th>
-                                   <th>Update Date</th>
-                                   <th>Edit</th>
-                                   <th>Delete</th>
-                                </tr>
-                             </thead>
-                             {% if category_obj %}
-                             {% for category in category_obj %}
-                             <tbody>
-                               <th>#{{category.id}}</th>
-                               <th>{{category.name}}</th>
-                               <th><img width="50px" height="50px" src="{{category.category_image}}" alt=""></th>
-                               <th>{{category.create_at}}</th>
-                               <th>{{category.update_at}}</th>
-                               <th><a class="btn btn-success" href="{% url 'editCategoryViews' category.name %}">Edit</a></th>
-                               <th><a class="btn btn-danger" href="{% url 'deleteCategoryViews' category.id %}">Delete</a></th>
-                             </tbody>
-                             {% endfor %}
-                             {% endif %}
-                          </table>
-                        </div>
-                      </div>
+    <!-- Right Side Content Start -->
+    <section id="content" class="seipkon-content-wrapper">
+        <div class="page-content">
+            <div class="container-fluid">
+                <!-- message framework -->
+                {% if messages %}
+                    <div class="messages">
+                        {% for message in messages %}
+                            <div style="color:#f00; text-align:center, font-size:20px" {% if message.tags %}
+                                 class="{{ message.tags }}"{% endif %}>{{ message }}</div>
+                        {% endfor %}
                     </div>
-                  </div>
-                  <!-- pagination -->
-                  <div class="page-nation text-right">
-                      {% if category_obj.has_other_pages %}
+                {% endif %}
+                <!-- end message framework -->
+
+                <div class="row">
+                    <div class="col-lg-4">
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-primary"
+                                data-backdrop="static" , data-keyboard="false"><i class="fa fa-plus"></i> Add Color
+                        </button>
+                    </div>
+                    <div class="col-lg-4">
+                        <!-- message framework -->
+                        {% if messages %}
+                            <div class="messages">
+                                {% for message in messages %}
+                                    <div class="message_text">{{ message }}</div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        <!-- end message framework -->
+                    </div>
+                    <div class="col-lg-4 text-right">
+                        <div class="searchForm">
+                            <form method="GET">
+                                {% csrf_token %}
+                                <input type="text" name="search_item" placeholder="search...">
+                                <button type="submit" name="button"><i class="fa fa-search"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- .modal -->
+                <div class="modal  fade" id="modal-primary">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">Category From</h4>
+                            </div>
+                            <form method="POST">
+                                {% csrf_token %}
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label class="control-label">Category Name :</label>
+                                        {{ category_form.name }}
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Category Title (Optional) :</label>
+                                        {{ category_form.category_title }}
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label">Category image URL (Optional) :</label>
+                                        {{ category_form.category_image }}
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-success">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="page-box">
+                            <div class="page-box">
+                                <table id="invoice-list" class="table display table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>Sl</th>
+                                        <th>Category Name</th>
+                                        <th>Category Image</th>
+                                        <th>Create Date</th>
+                                        <th>Update Date</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                    </thead>
+                                    {% if category_obj %}
+                                        {% for category in category_obj %}
+                                            <tbody>
+                                            <th>#{{ category.id }}</th>
+                                            <th>{{ category.name }}</th>
+                                            <th><img width="50px" height="50px" src="{{ category.category_image }}"
+                                                     alt=""></th>
+                                            <th>{{ category.create_at }}</th>
+                                            <th>{{ category.update_at }}</th>
+                                            <th><a class="btn btn-success"
+                                                   href="{% url 'editCategoryViews' category.name %}">Edit</a></th>
+                                            <th><a class="btn btn-danger"
+                                                   href="{% url 'deleteCategoryViews' category.id %}">Delete</a></th>
+                                            </tbody>
+                                        {% endfor %}
+                                    {% endif %}
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- pagination -->
+                <div class="page-nation text-right">
+                    {% if category_obj.has_other_pages %}
                         <ul class="pagination">
-                          {% if category_obj.has_previous %}
-                            <li><a href="?page={{ category_obj.previous_page_number }}">&laquo;</a></li>
-                          {% else %}
-                            <li class="disabled"><span>&laquo;</span></li>
-                          {% endif %}
-                          {% for i in category_obj.paginator.page_range %}
-                            {% if category_obj.number == i %}
-                              <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                            {% if category_obj.has_previous %}
+                                <li><a href="?page={{ category_obj.previous_page_number }}">&laquo;</a></li>
                             {% else %}
-                              <li><a href="?page={{ i }}">{{ i }}</a></li>
+                                <li class="disabled"><span>&laquo;</span></li>
                             {% endif %}
-                          {% endfor %}
-                          {% if category_obj.has_next %}
-                            <li><a href="?page={{ category_obj.next_page_number }}">&raquo;</a></li>
-                          {% else %}
-                            <li class="disabled"><span>&raquo;</span></li>
-                          {% endif %}
+                            {% for i in category_obj.paginator.page_range %}
+                                {% if category_obj.number == i %}
+                                    <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                                {% else %}
+                                    <li><a href="?page={{ i }}">{{ i }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                            {% if category_obj.has_next %}
+                                <li><a href="?page={{ category_obj.next_page_number }}">&raquo;</a></li>
+                            {% else %}
+                                <li class="disabled"><span>&raquo;</span></li>
+                            {% endif %}
                         </ul>
-                      {% endif %}
-                  </div>
-                  <!-- pagination -->
-               </div>
+                    {% endif %}
+                </div>
+                <!-- pagination -->
             </div>
-         </section>
-         <!-- End Right Side Content -->
+        </div>
+    </section>
+    <!-- End Right Side Content -->
 {% endblock %}

@@ -5,40 +5,41 @@
 
 {% block body %}
 
-         <!-- Right Side Content Start -->
-         <section id="content" class="seipkon-content-wrapper">
-            <div class="page-content">
-               <div class="container-fluid">
+    <!-- Right Side Content Start -->
+    <section id="content" class="seipkon-content-wrapper">
+        <div class="page-content">
+            <div class="container-fluid">
 
-                  <!-- Add Note Start -->
-                  <div class="row">
+                <!-- Add Note Start -->
+                <div class="row">
                     {% if site_note %}
-                    {% for note in site_note %}
-                     <div class="col-md-4">
-                       <div class="single-notes alert">
-                          <div class="single-notes-head">
-                             <a href="#" class="notes-close" data-toggle="tooltip" title="" data-dismiss="alert" aria-label="close" data-original-title="Remove">
-                             <i class="fa fa-times"></i>
-                             </a>
-                          </div>
-                          <div class="single-notes-body">
-                             <div class="single-notes-date">
-                                <p>{{ note.nodte_date }}</p>
-                             </div>
-                             <div class="single-notes-title">
-                                <h3>{{ note.note_title }}</h3>
-                             </div>
-                             <div class="single-notes-content">
-                                <p>{{ note.note_body }}</p>
-                             </div>
-                          </div>
-                     </div>
-                  </div>
-                  <!-- End Note -->
-                  {% endfor %}
-                  {% endif %}
-               </div>
+                        {% for note in site_note %}
+                            <div class="col-md-4">
+                                <div class="single-notes alert">
+                                    <div class="single-notes-head">
+                                        <a href="#" class="notes-close" data-toggle="tooltip" title=""
+                                           data-dismiss="alert" aria-label="close" data-original-title="Remove">
+                                            <i class="fa fa-times"></i>
+                                        </a>
+                                    </div>
+                                    <div class="single-notes-body">
+                                        <div class="single-notes-date">
+                                            <p>{{ note.nodte_date }}</p>
+                                        </div>
+                                        <div class="single-notes-title">
+                                            <h3>{{ note.note_title }}</h3>
+                                        </div>
+                                        <div class="single-notes-content">
+                                            <p>{{ note.note_body }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Note -->
+                        {% endfor %}
+                    {% endif %}
+                </div>
             </div>
-         </section>
-         <!-- End Right Side Content -->
+    </section>
+    <!-- End Right Side Content -->
 {% endblock %}

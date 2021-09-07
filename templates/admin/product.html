@@ -5,92 +5,94 @@
 
 {% block body %}
 
-         <!-- Right Side Content Start -->
-         <section id="content" class="seipkon-content-wrapper">
-            <div class="page-content">
-               <div class="container-fluid">
+    <!-- Right Side Content Start -->
+    <section id="content" class="seipkon-content-wrapper">
+        <div class="page-content">
+            <div class="container-fluid">
 
-                  <!-- Breadcromb Row Start -->
-                  <div class="row">
-                     <div class="col-md-12">
+                <!-- Breadcromb Row Start -->
+                <div class="row">
+                    <div class="col-md-12">
                         <div class="breadcromb-area">
-                           <div class="row">
-                              <div class="col-md-6  col-sm-6">
-                                 <div class="seipkon-breadcromb-left">
-                                    <h3>Total media upload product {{ count_product }}</h3>
-                                 </div>
-                              </div>
-                              <div class="col-md-6  col-sm-6">
-                                 <div class="seipkon-breadcromb-right">
-                                    <ul>
-                                       <li><a href="{% url 'DashboardViews' %}">Dashboard</a></li>
-                                       <li>All product</li>
-                                    </ul>
-                                 </div>
-                              </div>
-                           </div>
+                            <div class="row">
+                                <div class="col-md-6  col-sm-6">
+                                    <div class="seipkon-breadcromb-left">
+                                        <h3>Total media upload product {{ count_product }}</h3>
+                                    </div>
+                                </div>
+                                <div class="col-md-6  col-sm-6">
+                                    <div class="seipkon-breadcromb-right">
+                                        <ul>
+                                            <li><a href="{% url 'DashboardViews' %}">Dashboard</a></li>
+                                            <li>All product</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                     </div>
-                  </div>
-                  <!-- End Breadcromb Row -->
+                    </div>
+                </div>
+                <!-- End Breadcromb Row -->
 
-                  <!-- Product Row Start -->
-                  <div class="row">
+                <!-- Product Row Start -->
+                <div class="row">
                     {% if all_product %}
-                    {% for product in all_product %}
-                     <div class="col-md-2 col-sm-3">
-                        <div class="single-product">
-                           <div class="product-image">
-                              <img src="{{ product.product_image }}" alt="product" />
-                              <div class="pro-image-overlay"></div>
-                              <div class="product-action">
-                                 <a href="{% url 'editItemViews' product.name %}" class="seipkon-btn seipkon-btn-primary">
-                                 <i class="fa fa-pencil"></i>
-                                 Edit
-                                 </a>
-                                 <a href="{% url 'deleteItemViews' product.id %}" class="seipkon-btn seipkon-btn-danger">
-                                 <i class="fa fa-trash"></i>
-                                 Delete
-                                 </a>
-                              </div>
-                           </div>
-                           <div class="product-info">
-                              <h3>{{ product.name }}</h3>
-                              <h4 class="price">৳ {{ product.product_price }}</h4>
-                           </div>
-                        </div>
-                     </div>
-                     {% endfor %}
-                     {% endif %}
-                     <!-- /.col -->
-               </div>
-              <!-- pagination -->
-              <div class="page-nation text-right">
-                  {% if all_product.has_other_pages %}
-                    <ul class="pagination">
-                      {% if all_product.has_previous %}
-                        <li><a href="?page={{ all_product.previous_page_number }}">&laquo;</a></li>
-                      {% else %}
-                        <li class="disabled"><span>&laquo;</span></li>
-                      {% endif %}
-                      {% for i in all_product.paginator.page_range %}
-                        {% if all_product.number == i %}
-                          <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-                        {% else %}
-                          <li><a href="?page={{ i }}">{{ i }}</a></li>
-                        {% endif %}
-                      {% endfor %}
-                      {% if all_product.has_next %}
-                        <li><a href="?page={{ all_product.next_page_number }}">&raquo;</a></li>
-                      {% else %}
-                        <li class="disabled"><span>&raquo;</span></li>
-                      {% endif %}
-                    </ul>
-                  {% endif %}
-              </div>
-              <!-- pagination -->
+                        {% for product in all_product %}
+                            <div class="col-md-2 col-sm-3">
+                                <div class="single-product">
+                                    <div class="product-image">
+                                        <img src="{{ product.product_image }}" alt="product"/>
+                                        <div class="pro-image-overlay"></div>
+                                        <div class="product-action">
+                                            <a href="{% url 'editItemViews' product.name %}"
+                                               class="seipkon-btn seipkon-btn-primary">
+                                                <i class="fa fa-pencil"></i>
+                                                Edit
+                                            </a>
+                                            <a href="{% url 'deleteItemViews' product.id %}"
+                                               class="seipkon-btn seipkon-btn-danger">
+                                                <i class="fa fa-trash"></i>
+                                                Delete
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="product-info">
+                                        <h3>{{ product.name }}</h3>
+                                        <h4 class="price">৳ {{ product.product_price }}</h4>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    <!-- /.col -->
+                </div>
+                <!-- pagination -->
+                <div class="page-nation text-right">
+                    {% if all_product.has_other_pages %}
+                        <ul class="pagination">
+                            {% if all_product.has_previous %}
+                                <li><a href="?page={{ all_product.previous_page_number }}">&laquo;</a></li>
+                            {% else %}
+                                <li class="disabled"><span>&laquo;</span></li>
+                            {% endif %}
+                            {% for i in all_product.paginator.page_range %}
+                                {% if all_product.number == i %}
+                                    <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                                {% else %}
+                                    <li><a href="?page={{ i }}">{{ i }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                            {% if all_product.has_next %}
+                                <li><a href="?page={{ all_product.next_page_number }}">&raquo;</a></li>
+                            {% else %}
+                                <li class="disabled"><span>&raquo;</span></li>
+                            {% endif %}
+                        </ul>
+                    {% endif %}
+                </div>
+                <!-- pagination -->
 
             </div>
-         </section>
-         <!-- End Right Side Content -->
+    </section>
+    <!-- End Right Side Content -->
 {% endblock %}

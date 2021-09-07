@@ -5,122 +5,126 @@
 
 {% block body %}
 
-         <!-- Right Side Content Start -->
-         <section id="content" class="seipkon-content-wrapper">
-            <div class="page-content">
-               <div class="container-fluid">
-                 <div class="row">
-                   <div class="col-lg-4">
-                      <button type="button" class="btn btn-success" data-toggle="modal"data-target="#modal-primary" data-backdrop="static", data-keyboard="false"><i class="fa fa-plus"></i> Add Size</button>
-                   </div>
-                   <div class="col-lg-4">
-                     <!-- message framework -->
-                     {% if messages %}
-                      <div class="messages">
-                          {% for message in messages %}
-                          <div class="message_text">{{ message }}</div>
-                          {% endfor %}
-                      </div>
-                    {% endif %}
-                    <!-- end message framework -->
-                   </div>
-                   <div class="col-lg-4 text-right">
-                     <div class="searchForm">
-                       <form method="GET">
-                         {% csrf_token %}
-                         <input type="text" name="search_item" placeholder="search...">
-                         <button type="submit" name="button"><i class="fa fa-search"></i></button>
-                       </form>
-                     </div>
-                   </div>
-                 </div>
-
-                 <!-- .modal -->
-                 <div class="modal  fade" id="modal-primary">
-                   <div class="modal-dialog">
-                     <div class="modal-content">
-                       <div class="modal-header">
-                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                           <span aria-hidden="true">&times;</span></button>
-                         <h4 class="modal-title">Size From</h4>
-                       </div>
-                       <form method="POST">
-                          {% csrf_token %}
-                       <div class="modal-body">
-                         <div class="form-group">
-                             <label class="control-label">Add product size :</label>
-                             {{ size_form.size }}
-                          </div>
-                       </div>
-                       <div class="modal-footer">
-                          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-                          <button type="submit" class="btn btn-success">Save</button>
-                        </div>
-                        </form>
-                     </div>
-                     <!-- /.modal-content -->
-                   </div>
-                   <!-- /.modal-dialog -->
-                 </div>
-                 <!-- /.modal -->
-                  <div class="row">
-                    <div class="col-md-12">
-                      <div class="page-box">
-                        <div class="page-box">
-                           <table id="invoice-list" class="table display table-hover">
-                             <thead>
-                                <tr>
-                                   <th>Sl</th>
-                                   <th>Size Name</th>
-                                   <th>Create Date</th>
-                                   <th>Edit</th>
-                                   <th>Delete</th>
-                                </tr>
-                             </thead>
-                             {% if size_obj %}
-                             {% for obj in size_obj %}
-                             <tbody>
-                               <th>#{{obj.id}}</th>
-                               <th>{{obj.size}}</th>
-                               <th>{{obj.create_at}}</th>
-                               <th><a class="btn btn-success" href="{% url 'editSizeViews' obj.size %}">Edit</a></th>
-                               <th><a class="btn btn-danger" href="{% url 'deleteSize' obj.id %}">Delete</a></th>
-                             </tbody>
-                             {% endfor %}
-                             {% endif %}
-                          </table>
-                        </div>
-                      </div>
+    <!-- Right Side Content Start -->
+    <section id="content" class="seipkon-content-wrapper">
+        <div class="page-content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-primary"
+                                data-backdrop="static" , data-keyboard="false"><i class="fa fa-plus"></i> Add Size
+                        </button>
                     </div>
-                  </div>
+                    <div class="col-lg-4">
+                        <!-- message framework -->
+                        {% if messages %}
+                            <div class="messages">
+                                {% for message in messages %}
+                                    <div class="message_text">{{ message }}</div>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                        <!-- end message framework -->
+                    </div>
+                    <div class="col-lg-4 text-right">
+                        <div class="searchForm">
+                            <form method="GET">
+                                {% csrf_token %}
+                                <input type="text" name="search_item" placeholder="search...">
+                                <button type="submit" name="button"><i class="fa fa-search"></i></button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
 
-                  <!-- pagination -->
-                  <div class="page-nation text-right">
-                      {% if size_obj.has_other_pages %}
+                <!-- .modal -->
+                <div class="modal  fade" id="modal-primary">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span></button>
+                                <h4 class="modal-title">Size From</h4>
+                            </div>
+                            <form method="POST">
+                                {% csrf_token %}
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label class="control-label">Add product size :</label>
+                                        {{ size_form.size }}
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-success">Save</button>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.modal-content -->
+                    </div>
+                    <!-- /.modal-dialog -->
+                </div>
+                <!-- /.modal -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="page-box">
+                            <div class="page-box">
+                                <table id="invoice-list" class="table display table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>Sl</th>
+                                        <th>Size Name</th>
+                                        <th>Create Date</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                    </thead>
+                                    {% if size_obj %}
+                                        {% for obj in size_obj %}
+                                            <tbody>
+                                            <th>#{{ obj.id }}</th>
+                                            <th>{{ obj.size }}</th>
+                                            <th>{{ obj.create_at }}</th>
+                                            <th><a class="btn btn-success" href="{% url 'editSizeViews' obj.size %}">Edit</a>
+                                            </th>
+                                            <th><a class="btn btn-danger"
+                                                   href="{% url 'deleteSize' obj.id %}">Delete</a></th>
+                                            </tbody>
+                                        {% endfor %}
+                                    {% endif %}
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- pagination -->
+                <div class="page-nation text-right">
+                    {% if size_obj.has_other_pages %}
                         <ul class="pagination">
-                          {% if size_obj.has_previous %}
-                            <li><a href="?page={{ size_obj.previous_page_number }}">&laquo;</a></li>
-                          {% else %}
-                            <li class="disabled"><span>&laquo;</span></li>
-                          {% endif %}
-                          {% for i in size_obj.paginator.page_range %}
-                            {% if size_obj.number == i %}
-                              <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                            {% if size_obj.has_previous %}
+                                <li><a href="?page={{ size_obj.previous_page_number }}">&laquo;</a></li>
                             {% else %}
-                              <li><a href="?page={{ i }}">{{ i }}</a></li>
+                                <li class="disabled"><span>&laquo;</span></li>
                             {% endif %}
-                          {% endfor %}
-                          {% if size_obj.has_next %}
-                            <li><a href="?page={{ size_obj.next_page_number }}">&raquo;</a></li>
-                          {% else %}
-                            <li class="disabled"><span>&raquo;</span></li>
-                          {% endif %}
+                            {% for i in size_obj.paginator.page_range %}
+                                {% if size_obj.number == i %}
+                                    <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                                {% else %}
+                                    <li><a href="?page={{ i }}">{{ i }}</a></li>
+                                {% endif %}
+                            {% endfor %}
+                            {% if size_obj.has_next %}
+                                <li><a href="?page={{ size_obj.next_page_number }}">&raquo;</a></li>
+                            {% else %}
+                                <li class="disabled"><span>&raquo;</span></li>
+                            {% endif %}
                         </ul>
-                      {% endif %}
-                  </div>
-                  <!-- pagination -->
-               </div>
+                    {% endif %}
+                </div>
+                <!-- pagination -->
             </div>
-         </section>
-         <!-- End Right Side Content -->
+        </div>
+    </section>
+    <!-- End Right Side Content -->
 {% endblock %}
