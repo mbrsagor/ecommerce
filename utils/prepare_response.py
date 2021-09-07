@@ -32,6 +32,7 @@ def created_success_response(message):
     return response
 
 
+# Prepare successfully when use pagination
 def prepare_success_response_with_pagination(serializer_data, count, total_count, page, nxt, prev, page_size):
     """ prepare success response for all serializer with pagination"""
     response = {
