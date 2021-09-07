@@ -5,397 +5,444 @@
 
 {% block body %}
 
-<div class="breadcrumb">
-	<div class="container">
-		<div class="breadcrumb-inner">
-			<ul class="list-inline list-unstyled">
-				<li><a href="/">Home</a></li>
-				<li><a href="{% url 'CategoryViews' product_details.name %}">{{ product_details.category }}</a></li>
-				<li class='active'>{{ product_details.name }}</li>
-			</ul>
-		</div>
-	</div>
-</div><!-- /.breadcrumb -->
-<div class="body-content outer-top-xs">
-	<div class='container'>
-		<div class='row single-product'>
-
-			<!-- sidebar -->
-				{% block sidebar %}
-				<div class="col-xs-12 col-sm-12 col-md-3 sidebar">
-					{% if sidebar_obj %}
-					{% for widget in sidebar_obj %}
-					<div class="sidebar-banner">
-						<h3 class="section-title">{{ widget.ads_title }}</h3>
-						<div class="widget_banner">
-							<img src="{{ widget.ads_image }}" alt="{{ widget.ads_title }}">
-						</div>
-					</div>
-					<br/>
-					{% endfor %}
-					{% endif %}
-					<!-- ============================================== HOT DEALS ============================================== -->
-					<div class="sidebar-widget hot-deals wow fadeInUp outer-bottom-xs">
-						<h3 class="section-title">hot deals</h3>
-						<div class="owl-carousel sidebar-carousel custom-carousel owl-theme outer-top-ss">
-							{% if product_hotdeal %}
-							{% for item in product_hotdeal %}
-							<div class="item">
-								<div class="products">
-									<div class="hot-deal-wrapper">
-										<div class="image">
-											<img src="{{ item.product_image }}" alt="">
-										</div>
-									</div>
-									<div class="product-info text-left m-t-20">
-										<h3 class="name"><a href="{% url 'productDetails_views' item.name %}">{{ item.name }}</a></h3>
-										<div class="rating rateit-small"></div>
-										<div class="product-price">
-										 <span class="price"> ৳{{ item.product_price }}</span>
-											<span class="price-before-discount">৳ {{ item.product_price }}</span>
-										</div>
-									</div>
-									<div class="cart clearfix animate-effect">
-										<div class="action">
-											<div class="add-cart-button btn-group">
-												<button onclick="window.location.href='{% url 'cart_add' item.id %}'" class="btn btn-primary icon" data-toggle="dropdown" type="button"> <i class="fa fa-shopping-cart"></i> </button>
-												<button onclick="window.location.href='{% url 'cart_add' item.id %}'" class="btn btn-primary cart-btn">Add to cart</button>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							{% endfor %}
-							{% endif %}
-						</div>
-					</div>
-					<!-- ============================================== HOT DEALS: END ============================================== -->
-
-					<!-- ============================================== SPECIAL OFFER ============================================== -->
-
-					<div class="sidebar-widget outer-bottom-small wow fadeInUp">
-						<h3 class="section-title">Special Offer</h3>
-						<div class="sidebar-widget-body outer-top-xs">
-							<div class="owl-carousel sidebar-carousel special-offer custom-carousel owl-theme outer-top-xs">
-								{% if special_offer  %}
-								{% for item in special_offer %}
-								<div class="item">
-									<div class="products special-product">
-										<div class="product">
-											<div class="product-micro">
-												<div class="row product-micro-row">
-													<div class="col col-xs-5">
-														<div class="product-image">
-															<div class="image">
-																<a href="{% url 'productDetails_views' item.name %}">
-																	{% if not item.product_image %}
-																	<img src="{% static 'assets/images/demo.jpg' %}" alt="">
-																	{% else %}
-																	<img src="{{ item.product_image }}" alt="{{ item.product_name }}">
-																	{% endif %}
-																</a>
-															</div>
-														</div>
-													</div>
-													<div class="col col-xs-7">
-														<div class="product-info">
-															<h3 class="name">
-																<a href="{% url 'productDetails_views' item.name %}">{{ item.name }}</a>
-															</h3>
-															<div class="rating rateit-small"></div>
-															<div class="product-price">
-																<span class="price"> ৳{{ item.product_price }} </span>
-															</div>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-								{% endfor %}
-								{% endif %}
-							</div>
-						</div>
-					</div>
-				</div>
-				{% endblock %}
-			<!-- /.sidebar -->
-
-<div class='col-md-9'>
-  <div class="detail-block">
-		<div class="row  wow fadeInUp">
-		 <div class="col-xs-12 col-sm-6 col-md-5 gallery-holder">
-       <div class="product-item-holder size-big single-product-gallery small-gallery">
-         <div id="owl-single-product">
-            <div class="single-product-gallery-item" id="slide1">
-                <a data-lightbox="image-1" data-title="{{ product_details.name }}" href="{{ product_details.product_image }}">
-                    <img class="img-responsive" alt="" src="{% static 'assets/images/blank.gif' %}" data-echo="{{ product_details.product_image }}" />
-                </a>
+    <div class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-inner">
+                <ul class="list-inline list-unstyled">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="{% url 'CategoryViews' product_details.name %}">{{ product_details.category }}</a></li>
+                    <li class='active'>{{ product_details.name }}</li>
+                </ul>
             </div>
         </div>
-        <div class="single-product-gallery-thumbs gallery-thumbs">
-            <div id="owl-single-product-thumbnails">
-                <div class="item">
-                    <a data-lightbox="image-1" href="{{ product_details.gallery_image1 }}" class="horizontal-thumb active" data-target="#owl-single-product" data-slide="1" href="#slide1">
-                        <img class="img-responsive" width="85" alt="" src="{% static 'assets/images/blank.gif' %}" data-echo="{{ product_details.gallery_image1 }}" />
-                    </a>
-                </div>
-                <div class="item">
-                    <a data-lightbox="image-1" href="{{ product_details.gallery_image2 }}" class="horizontal-thumb" data-target="#owl-single-product" data-slide="2" href="#slide2">
-                        <img class="img-responsive" width="85" alt="" src="{% static 'assets/images/blank.gif' %}" data-echo="{{ product_details.gallery_image2 }}" />
-                    </a>
-                </div>
-                <div class="item">
-                    <a data-lightbox="image-1" href="{{ product_details.gallery_image3 }}" class="horizontal-thumb" data-target="#owl-single-product" data-slide="3" href="#slide3">
-                        <img class="img-responsive" width="85" alt="" src="{% static 'assets/images/blank.gif' %}" data-echo="{{ product_details.gallery_image3 }}" />
-                    </a>
-                </div>
-                <div class="item">
-                    <a data-lightbox="image-1" href="{{ product_details.gallery_image4 }}" class="horizontal-thumb" data-target="#owl-single-product" data-slide="4" href="#slide4">
-                        <img class="img-responsive" width="85" alt="" src="{% static 'assets/images/blank.gif' %}" data-echo="{{ product_details.gallery_image4 }}" />
-                    </a>
-                </div>
-                <div class="item">
-                    <a data-lightbox="image-1" href="{{ product_details.gallery_image5 }}" class="horizontal-thumb" data-target="#owl-single-product" data-slide="5" href="#slide5">
-                        <img class="img-responsive" width="85" alt="" src="{% static 'assets/images/blank.gif' %}" data-echo="{{ product_details.gallery_image5 }}" />
-                    </a>
-                </div>
+    </div><!-- /.breadcrumb -->
+    <div class="body-content outer-top-xs">
+        <div class='container'>
+            <div class='row single-product'>
+
+                <!-- sidebar -->
+                {% block sidebar %}
+                    <div class="col-xs-12 col-sm-12 col-md-3 sidebar">
+                        {% if sidebar_obj %}
+                            {% for widget in sidebar_obj %}
+                                <div class="sidebar-banner">
+                                    <h3 class="section-title">{{ widget.ads_title }}</h3>
+                                    <div class="widget_banner">
+                                        <img src="{{ widget.ads_image }}" alt="{{ widget.ads_title }}">
+                                    </div>
+                                </div>
+                                <br/>
+                            {% endfor %}
+                        {% endif %}
+                        <!-- ============================================== HOT DEALS ============================================== -->
+                        <div class="sidebar-widget hot-deals wow fadeInUp outer-bottom-xs">
+                            <h3 class="section-title">hot deals</h3>
+                            <div class="owl-carousel sidebar-carousel custom-carousel owl-theme outer-top-ss">
+                                {% if product_hotdeal %}
+                                    {% for item in product_hotdeal %}
+                                        <div class="item">
+                                            <div class="products">
+                                                <div class="hot-deal-wrapper">
+                                                    <div class="image">
+                                                        <img src="{{ item.product_image }}" alt="">
+                                                    </div>
+                                                </div>
+                                                <div class="product-info text-left m-t-20">
+                                                    <h3 class="name"><a
+                                                            href="{% url 'productDetails_views' item.name %}">{{ item.name }}</a>
+                                                    </h3>
+                                                    <div class="rating rateit-small"></div>
+                                                    <div class="product-price">
+                                                        <span class="price"> ৳{{ item.product_price }}</span>
+                                                        <span class="price-before-discount">৳ {{ item.product_price }}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="cart clearfix animate-effect">
+                                                    <div class="action">
+                                                        <div class="add-cart-button btn-group">
+                                                            <button onclick="window.location.href='{% url 'cart_add' item.id %}'"
+                                                                    class="btn btn-primary icon" data-toggle="dropdown"
+                                                                    type="button"><i class="fa fa-shopping-cart"></i>
+                                                            </button>
+                                                            <button onclick="window.location.href='{% url 'cart_add' item.id %}'"
+                                                                    class="btn btn-primary cart-btn">Add to cart
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                {% endif %}
+                            </div>
+                        </div>
+                        <!-- ============================================== HOT DEALS: END ============================================== -->
+
+                        <!-- ============================================== SPECIAL OFFER ============================================== -->
+
+                        <div class="sidebar-widget outer-bottom-small wow fadeInUp">
+                            <h3 class="section-title">Special Offer</h3>
+                            <div class="sidebar-widget-body outer-top-xs">
+                                <div class="owl-carousel sidebar-carousel special-offer custom-carousel owl-theme outer-top-xs">
+                                    {% if special_offer %}
+                                        {% for item in special_offer %}
+                                            <div class="item">
+                                                <div class="products special-product">
+                                                    <div class="product">
+                                                        <div class="product-micro">
+                                                            <div class="row product-micro-row">
+                                                                <div class="col col-xs-5">
+                                                                    <div class="product-image">
+                                                                        <div class="image">
+                                                                            <a href="{% url 'productDetails_views' item.name %}">
+                                                                                {% if not item.product_image %}
+                                                                                    <img src="{% static 'assets/images/demo.jpg' %}"
+                                                                                         alt="">
+                                                                                {% else %}
+                                                                                    <img src="{{ item.product_image }}"
+                                                                                         alt="{{ item.product_name }}">
+                                                                                {% endif %}
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="col col-xs-7">
+                                                                    <div class="product-info">
+                                                                        <h3 class="name">
+                                                                            <a href="{% url 'productDetails_views' item.name %}">{{ item.name }}</a>
+                                                                        </h3>
+                                                                        <div class="rating rateit-small"></div>
+                                                                        <div class="product-price">
+                                                                            <span class="price"> ৳{{ item.product_price }} </span>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        {% endfor %}
+                                    {% endif %}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                {% endblock %}
+                <!-- /.sidebar -->
+
+                <div class='col-md-9'>
+                    <div class="detail-block">
+                        <div class="row  wow fadeInUp">
+                            <div class="col-xs-12 col-sm-6 col-md-5 gallery-holder">
+                                <div class="product-item-holder size-big single-product-gallery small-gallery">
+                                    <div id="owl-single-product">
+                                        <div class="single-product-gallery-item" id="slide1">
+                                            <a data-lightbox="image-1" data-title="{{ product_details.name }}"
+                                               href="{{ product_details.product_image }}">
+                                                <img class="img-responsive" alt=""
+                                                     src="{% static 'assets/images/blank.gif' %}"
+                                                     data-echo="{{ product_details.product_image }}"/>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="single-product-gallery-thumbs gallery-thumbs">
+                                        <div id="owl-single-product-thumbnails">
+                                            <div class="item">
+                                                <a data-lightbox="image-1" href="{{ product_details.gallery_image1 }}"
+                                                   class="horizontal-thumb active" data-target="#owl-single-product"
+                                                   data-slide="1" href="#slide1">
+                                                    <img class="img-responsive" width="85" alt=""
+                                                         src="{% static 'assets/images/blank.gif' %}"
+                                                         data-echo="{{ product_details.gallery_image1 }}"/>
+                                                </a>
+                                            </div>
+                                            <div class="item">
+                                                <a data-lightbox="image-1" href="{{ product_details.gallery_image2 }}"
+                                                   class="horizontal-thumb" data-target="#owl-single-product"
+                                                   data-slide="2" href="#slide2">
+                                                    <img class="img-responsive" width="85" alt=""
+                                                         src="{% static 'assets/images/blank.gif' %}"
+                                                         data-echo="{{ product_details.gallery_image2 }}"/>
+                                                </a>
+                                            </div>
+                                            <div class="item">
+                                                <a data-lightbox="image-1" href="{{ product_details.gallery_image3 }}"
+                                                   class="horizontal-thumb" data-target="#owl-single-product"
+                                                   data-slide="3" href="#slide3">
+                                                    <img class="img-responsive" width="85" alt=""
+                                                         src="{% static 'assets/images/blank.gif' %}"
+                                                         data-echo="{{ product_details.gallery_image3 }}"/>
+                                                </a>
+                                            </div>
+                                            <div class="item">
+                                                <a data-lightbox="image-1" href="{{ product_details.gallery_image4 }}"
+                                                   class="horizontal-thumb" data-target="#owl-single-product"
+                                                   data-slide="4" href="#slide4">
+                                                    <img class="img-responsive" width="85" alt=""
+                                                         src="{% static 'assets/images/blank.gif' %}"
+                                                         data-echo="{{ product_details.gallery_image4 }}"/>
+                                                </a>
+                                            </div>
+                                            <div class="item">
+                                                <a data-lightbox="image-1" href="{{ product_details.gallery_image5 }}"
+                                                   class="horizontal-thumb" data-target="#owl-single-product"
+                                                   data-slide="5" href="#slide5">
+                                                    <img class="img-responsive" width="85" alt=""
+                                                         src="{% static 'assets/images/blank.gif' %}"
+                                                         data-echo="{{ product_details.gallery_image5 }}"/>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class='col-sm-6 col-md-7 product-info-block'>
+                                <div class="product-info">
+                                    <h1 class="name">{{ product_details.name }}</h1>
+                                    <div class="stock-container info-container m-t-10">
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <div class="stock-box">
+                                                    <span class="label">Availability :</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <div class="stock-box">
+                                                    <span class="value">{{ product_details.avaiableable }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <div class="stock-box">
+                                                    <span class="label">Cateogry :</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <div class="stock-box">
+                                                    <span class="value">{{ product_details.category }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <div class="stock-box">
+                                                    <span class="label">Color :</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <div class="stock-box">
+                                                    <span class="value">{{ product_details.product_color }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <div class="stock-box">
+                                                    <span class="label">Brand :</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <div class="stock-box">
+                                                    <span class="value">{{ product_details.brand_name }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <div class="stock-box">
+                                                    <span class="label">Model :</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <div class="stock-box">
+                                                    <span class="value">{{ product_details.product_model }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <div class="stock-box">
+                                                    <span class="label">Size :</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <div class="stock-box">
+                                                    <span class="value">{{ product_details.product_size }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <div class="stock-box">
+                                                    <span class="label">Dalivery System :</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <div class="stock-box">
+                                                    <span class="value">{{ product_details.product_dalivery }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <div class="stock-box">
+                                                    <span class="label">Warranty :</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <div class="stock-box">
+                                                    <span class="value">{{ product_details.product_warranty }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm-3">
+                                                <div class="stock-box">
+                                                    <span class="label">Purchase price :</span>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-9">
+                                                <div class="stock-box">
+                                                    <span class="value">৳{{ product_details.purchase_price }}</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="price-container info-container m-t-20">
+                                        <div class="row">
+                                            <div class="col-sm-6">
+                                                <div class="price-box">
+                                                    <span class="price">৳ {{ product_details.product_price }}</span>
+                                                    <span class="price-strike">৳ {{ product_details.discount_price }}</span>
+                                                </div>
+                                            </div>
+                                        </div><!-- /.row -->
+                                    </div><!-- /.price-container -->
+                                    <div class="quantity-container info-container">
+                                        <div class="row">
+                                            <div class="col-sm-2">
+                                                <span class="label">Qty :</span>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <div class="cart-quantity">
+                                                    <div class="quant-input">
+                                                        <input type="number" value="1">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-7">
+                                                <a href="{% url 'cart_add' product_details.id %}"
+                                                   class="btn btn-primary">
+                                                    <i class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <br/><br/>
+                                        <!-- Facebook share button -->
+                                        <div class="fb-share-button" data-href="{{ product_details.product_name }}"
+                                             data-layout="button" data-size="large" data-mobile-iframe="true"><a
+                                                target="_blank"
+                                                href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.facebook.com%2FBizBondit&amp;src=sdkpreparse"
+                                                class="fb-xfbml-parse-ignore">Share</a></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="product-tabs inner-bottom-xs  wow fadeInUp">
+                        <div class="row">
+                            <div class="col-sm-3">
+                                <ul id="product-tabs" class="nav nav-tabs nav-tab-cell">
+                                    <li class="active"><a data-toggle="tab" href="#description">DESCRIPTION</a></li>
+                                    <li><a data-toggle="tab" href="#review">REVIEW</a></li>
+                                </ul>
+                            </div>
+                            <div class="col-sm-9">
+                                <div class="tab-content">
+                                    <div id="description" class="tab-pane in active">
+                                        <div class="product-tab">
+                                            <p class="text">{{ product_details.description }}</p>
+                                        </div>
+                                    </div><!-- /.tab-pane -->
+                                    <div id="review" class="tab-pane">
+                                        <div class="product-tab">
+                                            <div class="product-add-review">
+                                                <h4 class="title">Write your own review</h4>
+                                                <div class="review-form">
+                                                    <div class="form-container">
+                                                        <div class="fb-comments"
+                                                             data-href="https://www.facebook.com/BizBondit/"
+                                                             data-numposts="2"></div>
+                                                    </div><!-- /.form-container -->
+                                                </div><!-- /.review-form -->
+
+                                            </div><!-- /.product-add-review -->
+
+                                        </div><!-- /.product-tab -->
+                                    </div><!-- /.tab-pane -->
+                                </div><!-- /.tab-content -->
+                            </div><!-- /.col -->
+                        </div><!-- /.row -->
+                    </div><!-- /.product-tabs -->
+
+                    <!-- ============================================== UPSELL PRODUCTS ============================================== -->
+                    <section class="section featured-product wow fadeInUp">
+                        <h3 class="section-title">related products</h3>
+                        <div class="owl-carousel home-owl-carousel upsell-product custom-carousel owl-theme outer-top-xs">
+                            {% if related_product %}
+                                {% for product in related_product %}
+                                    <div class="item item-carousel">
+                                        <div class="products">
+                                            <div class="product">
+                                                <div class="product-image">
+                                                    <div class="image">
+                                                        <a href="{% url 'productDetails_views' product.name %}">
+                                                            {% if not product.name %}
+                                                                <img src="{% static 'assets/images/demo.jpg' %}" alt="">
+                                                            {% else %}
+                                                                <img src="{{ product.product_image }}" alt="">
+                                                            {% endif %}
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                                <div class="product-info text-left">
+                                                    <h3 class="name"><a
+                                                            href="{% url 'productDetails_views' product.name %}">{{ product.name }}</a>
+                                                    </h3>
+                                                    <div class="description"></div>
+                                                    <div class="product-price">
+                                                        <span class="price"> ৳{{ product.product_price }}</span>
+                                                        <span class="price-before-discount">৳ {{ product.discount_price }}</span>
+                                                    </div>
+                                                </div>
+                                                <div class="cart clearfix animate-effect">
+                                                    <div class="action">
+                                                        <ul class="list-unstyled">
+                                                            <li class="add-cart-button btn-group">
+                                                                <a href="{% url 'cart_add' product.id %}"
+                                                                   data-toggle="tooltip" class="btn btn-primary icon"
+                                                                   type="submit" data-original-title="Add Cart"> <i
+                                                                        class="fa fa-shopping-cart"></i> </a>
+                                                            </li>
+                                                            <li class="lnk"><a data-toggle="tooltip" class="add-to-cart"
+                                                                               href="{% url 'productDetails_views' product.name %}"
+                                                                               data-original-title="detials"> <i
+                                                                    class="fa fa-eye" aria-hidden="true"></i> </a></li>
+                                                        </ul>
+                                                    </div><!-- /.action -->
+                                                </div><!-- /.cart -->
+                                            </div><!-- /.product -->
+                                        </div><!-- /.products -->
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </section><!-- /.section -->
+                </div><!-- /.col -->
+                <div class="clearfix"></div>
             </div>
-        </div>
-    </div>
-</div>
-		<div class='col-sm-6 col-md-7 product-info-block'>
-			<div class="product-info">
-				<h1 class="name">{{ product_details.name }}</h1>
-				<div class="stock-container info-container m-t-10">
-					<div class="row">
-						<div class="col-sm-3">
-							<div class="stock-box">
-								<span class="label">Availability :</span>
-							</div>
-						</div>
-						<div class="col-sm-9">
-							<div class="stock-box">
-								<span class="value">{{ product_details.avaiableable }}</span>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-3">
-							<div class="stock-box">
-								<span class="label">Cateogry :</span>
-							</div>
-						</div>
-						<div class="col-sm-9">
-							<div class="stock-box">
-								<span class="value">{{ product_details.category }}</span>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-3">
-							<div class="stock-box">
-								<span class="label">Color :</span>
-							</div>
-						</div>
-						<div class="col-sm-9">
-							<div class="stock-box">
-								<span class="value">{{ product_details.product_color }}</span>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-3">
-							<div class="stock-box">
-								<span class="label">Brand :</span>
-							</div>
-						</div>
-						<div class="col-sm-9">
-							<div class="stock-box">
-								<span class="value">{{ product_details.brand_name }}</span>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-3">
-							<div class="stock-box">
-								<span class="label">Model :</span>
-							</div>
-						</div>
-						<div class="col-sm-9">
-							<div class="stock-box">
-								<span class="value">{{ product_details.product_model }}</span>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-3">
-							<div class="stock-box">
-								<span class="label">Size :</span>
-							</div>
-						</div>
-						<div class="col-sm-9">
-							<div class="stock-box">
-								<span class="value">{{ product_details.product_size }}</span>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-3">
-							<div class="stock-box">
-								<span class="label">Dalivery System :</span>
-							</div>
-						</div>
-						<div class="col-sm-9">
-							<div class="stock-box">
-								<span class="value">{{ product_details.product_dalivery }}</span>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-3">
-							<div class="stock-box">
-								<span class="label">Warranty :</span>
-							</div>
-						</div>
-						<div class="col-sm-9">
-							<div class="stock-box">
-								<span class="value">{{ product_details.product_warranty }}</span>
-							</div>
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-sm-3">
-							<div class="stock-box">
-								<span class="label">Purchase price :</span>
-							</div>
-						</div>
-						<div class="col-sm-9">
-							<div class="stock-box">
-								<span class="value">৳{{ product_details.purchase_price }}</span>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="price-container info-container m-t-20">
-					<div class="row">
-						<div class="col-sm-6">
-							<div class="price-box">
-								<span class="price">৳ {{ product_details.product_price }}</span>
-								<span class="price-strike">৳ {{ product_details.discount_price }}</span>
-							</div>
-						</div>
-					</div><!-- /.row -->
-				</div><!-- /.price-container -->
-				<div class="quantity-container info-container">
-					<div class="row">
-						<div class="col-sm-2">
-							<span class="label">Qty :</span>
-						</div>
-						<div class="col-sm-2">
-							<div class="cart-quantity">
-								<div class="quant-input">
-	                <input type="number" value="1">
-               </div>
-	           </div>
-						</div>
-						<div class="col-sm-7">
-							<a href="{% url 'cart_add' product_details.id %}" class="btn btn-primary">
-								<i class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART
-							</a>
-						</div>
-					</div>
-					<br/><br/>
-					<!-- Facebook share button -->
-					<div class="fb-share-button" data-href="{{ product_details.product_name }}" data-layout="button" data-size="large" data-mobile-iframe="true"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fwww.facebook.com%2FBizBondit&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
-				</div>
-			</div>
-			</div>
-				</div>
-      </div>
-				<div class="product-tabs inner-bottom-xs  wow fadeInUp">
-					<div class="row">
-						<div class="col-sm-3">
-							<ul id="product-tabs" class="nav nav-tabs nav-tab-cell">
-								<li class="active"><a data-toggle="tab" href="#description">DESCRIPTION</a></li>
-								<li><a data-toggle="tab" href="#review">REVIEW</a></li>
-							</ul>
-						</div>
-						<div class="col-sm-9">
-							<div class="tab-content">
-								<div id="description" class="tab-pane in active">
-									<div class="product-tab">
-										<p class="text">{{ product_details.description }}</p>
-									</div>
-								</div><!-- /.tab-pane -->
-								<div id="review" class="tab-pane">
-									<div class="product-tab">
-										<div class="product-add-review">
-											<h4 class="title">Write your own review</h4>
-											<div class="review-form">
-												<div class="form-container">
-													<div class="fb-comments" data-href="https://www.facebook.com/BizBondit/" data-numposts="2"></div>
-												</div><!-- /.form-container -->
-											</div><!-- /.review-form -->
-
-										</div><!-- /.product-add-review -->
-
-							        </div><!-- /.product-tab -->
-								</div><!-- /.tab-pane -->
-							</div><!-- /.tab-content -->
-						</div><!-- /.col -->
-					</div><!-- /.row -->
-				</div><!-- /.product-tabs -->
-
-				<!-- ============================================== UPSELL PRODUCTS ============================================== -->
-				<section class="section featured-product wow fadeInUp">
-					<h3 class="section-title">related products</h3>
-					<div class="owl-carousel home-owl-carousel upsell-product custom-carousel owl-theme outer-top-xs">
-				{% if related_product %}
-				{% for product in related_product %}
-				<div class="item item-carousel">
-					<div class="products">
-				<div class="product">
-				<div class="product-image">
-					<div class="image">
-						<a href="{% url 'productDetails_views' product.name %}">
-							{% if not product.name %}
-								<img  src="{% static 'assets/images/demo.jpg' %}" alt="">
-								{% else %}
-								<img src="{{ product.product_image }}" alt="">
-							{% endif %}
-						</a>
-					</div>
-				</div>
-				<div class="product-info text-left">
-					<h3 class="name"><a href="{% url 'productDetails_views' product.name %}">{{ product.name }}</a></h3>
-					<div class="description"></div>
-					<div class="product-price">
-						<span class="price"> ৳{{ product.product_price }}</span>
-						 <span class="price-before-discount">৳ {{ product.discount_price }}</span>
-					</div>
-				</div>
-							<div class="cart clearfix animate-effect">
-						<div class="action">
-							<ul class="list-unstyled">
-									<li class="add-cart-button btn-group">
-										<a href="{% url 'cart_add' product.id %}" data-toggle="tooltip" class="btn btn-primary icon" type="submit" data-original-title="Add Cart"> <i class="fa fa-shopping-cart"></i> </a>
-									</li>
-									<li class="lnk"> <a data-toggle="tooltip" class="add-to-cart" href="{% url 'productDetails_views' product.name %}" data-original-title="detials"> <i class="fa fa-eye" aria-hidden="true"></i> </a> </li>
-								</ul>
-						</div><!-- /.action -->
-					</div><!-- /.cart -->
-					</div><!-- /.product -->
-					</div><!-- /.products -->
-				</div>
-				{% endfor %}
-				{% endif %}
-					</div>
-				</section><!-- /.section -->
-			</div><!-- /.col -->
-			<div class="clearfix"></div>
-		</div>
-</div><!-- /.container -->
-</div><!-- /.body-content -->
+        </div><!-- /.container -->
+    </div><!-- /.body-content -->
 {% endblock %}

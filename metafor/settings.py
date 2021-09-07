@@ -14,7 +14,7 @@ SECRET_KEY = 't!glw5rg4c7t45u4$wrx5=*l64p5fv%=h@%6_f39k#&*tj3x7c'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -67,11 +67,11 @@ WSGI_APPLICATION = 'metafor.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'metadb',
-        'USER': 'meta',
-        'PASSWORD': 'admin@2018',
-        'HOST': 'localhost',
-        'PORT': '',
+        'NAME': 'db_name',
+        'USER': 'db_user',
+        'PASSWORD': 'db_password',
+        'HOST': 'localhost',  # Your host name
+        'PORT': '',  # Your DB port here
     }
 }
 
@@ -129,4 +129,5 @@ EMAIL_HOST_USER = 'demo.sagord@gmail.com'
 EMAIL_HOST_PASSWORD = 'demo12345'
 EMAIL_PORT = 587
 
+# Cart session
 CART_SESSION_ID = 'cart'

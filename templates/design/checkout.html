@@ -4,95 +4,106 @@
 {% block title %} checkout {% endblock %}
 
 {% block body %}
-<div class="breadcrumb">
-	<div class="container">
-		<div class="breadcrumb-inner">
-			<ul class="list-inline list-unstyled">
-				<li><a href="/">Home</a></li>
-				<li class='active'>Checkout</li>
-			</ul>
-		</div><!-- /.breadcrumb-inner -->
-	</div><!-- /.container -->
-</div><!-- /.breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <div class="breadcrumb-inner">
+                <ul class="list-inline list-unstyled">
+                    <li><a href="/">Home</a></li>
+                    <li class='active'>Checkout</li>
+                </ul>
+            </div><!-- /.breadcrumb-inner -->
+        </div><!-- /.container -->
+    </div><!-- /.breadcrumb -->
 
-<div class="body-content">
-	<div class="container">
-		<div class="checkout-box ">
-			<div class="row">
-				<div class="col-md-12">
-					<div class="panel-group checkout-steps" id="accordion">
-						<!-- checkout-step-01  -->
-<div class="panel panel-default checkout-step-01">
+    <div class="body-content">
+        <div class="container">
+            <div class="checkout-box ">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="panel-group checkout-steps" id="accordion">
+                            <!-- checkout-step-01  -->
+                            <div class="panel panel-default checkout-step-01">
 
-		<!-- panel-body  -->
-	    <div class="panel-body">
-			<div class="row">
-				<!-- already-registered-login -->
-				<div class="col-md-6 col-sm-6 already-registered-login">
-					<h4 class="checkout-subtitle">Fill up Information</h4>
-					<hr/>
-					<form method="POST" action="{% url 'checkOutViews' %}" class="register-form" role="form">
-						{% csrf_token %}
-						<div class="form-group">
-					    <label class="info-title" for="exampleInputEmail1">Your Full Name <span>*</span></label>
-					   {{form.full_name}}
-					  </div>
-						<div class="form-group">
-					    <label class="info-title" for="exampleInputEmail1">Email Address <span>*</span></label>
-					    {{form.email}}
-					  </div>
-						<div class="form-group">
-					    <label class="info-title" for="exampleInputEmail1">Your Phone Number <span>*</span></label>
-					    {{form.phn_number}}
-					  </div>
-						<div class="form-group">
-					    <label class="info-title" for="exampleInputEmail1">Your Address <span>*</span></label>
-					    {{form.address}}
-					  </div>
-						<div class="form-group">
-					    <label class="info-title" for="exampleInputEmail1">Your City <span>*</span></label>
-					    {{form.city}}
-					  </div>
-						<div class="form-group">
-					    <label class="info-title" for="exampleInputEmail1">Postal Code<span>*</span></label>
-					    {{form.postal_code}}
-					  </div>
-					  <button type="submit" class="btn-upper btn btn-primary checkout-page-button">Connfirm Checkout</button>
-					</form>
-				</div>
-				<!-- already-registered-login -->
+                                <!-- panel-body  -->
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <!-- already-registered-login -->
+                                        <div class="col-md-6 col-sm-6 already-registered-login">
+                                            <h4 class="checkout-subtitle">Fill up Information</h4>
+                                            <hr/>
+                                            <form method="POST" action="{% url 'checkOutViews' %}" class="register-form"
+                                                  role="form">
+                                                {% csrf_token %}
+                                                <div class="form-group">
+                                                    <label class="info-title" for="exampleInputEmail1">Your Full Name
+                                                        <span>*</span></label>
+                                                    {{ form.full_name }}
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="info-title" for="exampleInputEmail1">Email Address
+                                                        <span>*</span></label>
+                                                    {{ form.email }}
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="info-title" for="exampleInputEmail1">Your Phone Number
+                                                        <span>*</span></label>
+                                                    {{ form.phn_number }}
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="info-title" for="exampleInputEmail1">Your Address
+                                                        <span>*</span></label>
+                                                    {{ form.address }}
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="info-title" for="exampleInputEmail1">Your City
+                                                        <span>*</span></label>
+                                                    {{ form.city }}
+                                                </div>
+                                                <div class="form-group">
+                                                    <label class="info-title" for="exampleInputEmail1">Postal Code<span>*</span></label>
+                                                    {{ form.postal_code }}
+                                                </div>
+                                                <button type="submit"
+                                                        class="btn-upper btn btn-primary checkout-page-button">Connfirm
+                                                    Checkout
+                                                </button>
+                                            </form>
+                                        </div>
+                                        <!-- already-registered-login -->
 
-				<div class="col-md-6 col-sm-6">
-						<h4 class="checkout-subtitle">Order summary</h4>
-						<hr/>
-						<ul class="list-group">
-                {% for item in cart %}
-										<table class="table">
-											<thead>
-												<tr>
-													<th> Product Name: <strong>{{ item.product.name }}</strong>	</th>
-												</tr>
-												<tr>
-													<th> Quantity: <strong>{{ item.quantity }}</strong>	</th>
-												</tr>
-												<tr>
-													<th> Price: <strong>{{ item.total_price }}</strong>	</th>
-												</tr>
-											</thead><!-- /thead -->
-										</table><!-- /table -->
-                {% endfor %}
-               <li class="list-group-item active">Total Cost: {{ cart.get_total_price }}</li>
-          </ul>
-				</div>
+                                        <div class="col-md-6 col-sm-6">
+                                            <h4 class="checkout-subtitle">Order summary</h4>
+                                            <hr/>
+                                            <ul class="list-group">
+                                                {% for item in cart %}
+                                                    <table class="table">
+                                                        <thead>
+                                                        <tr>
+                                                            <th> Product Name: <strong>{{ item.product.name }}</strong>
+                                                            </th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th> Quantity: <strong>{{ item.quantity }}</strong></th>
+                                                        </tr>
+                                                        <tr>
+                                                            <th> Price: <strong>{{ item.total_price }}</strong></th>
+                                                        </tr>
+                                                        </thead><!-- /thead -->
+                                                    </table><!-- /table -->
+                                                {% endfor %}
+                                                <li class="list-group-item active">Total
+                                                    Cost: {{ cart.get_total_price }}</li>
+                                            </ul>
+                                        </div>
 
-			</div>
-		</div>
-		<!-- panel-body  -->
-</div>
-					</div><!-- /.checkout-steps -->
-				</div>
-			</div><!-- /.row -->
-		</div><!-- /.checkout-box -->
-</div><!-- /.container -->
-</div><!-- /.body-content -->
+                                    </div>
+                                </div>
+                                <!-- panel-body  -->
+                            </div>
+                        </div><!-- /.checkout-steps -->
+                    </div>
+                </div><!-- /.row -->
+            </div><!-- /.checkout-box -->
+        </div><!-- /.container -->
+    </div><!-- /.body-content -->
 {% endblock %}
