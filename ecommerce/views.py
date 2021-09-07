@@ -24,7 +24,6 @@ def cart_add(request, id):
     return redirect(cart_detail)
 
 
-
 # Remove Shopping Cart views
 def cart_remove(request, id):
     cart = Cart(request)
@@ -33,14 +32,12 @@ def cart_remove(request, id):
     return redirect(cart_detail)
 
 
-
 # Shopping Cart views
 def cart_detail(request):
     cart = Cart(request)
     for item in cart:
-        item['update_quantity_form'] ={'quantity': item['quantity'], 'update': True}
+        item['update_quantity_form'] = {'quantity': item['quantity'], 'update': True}
     return render(request, 'design/cart.html', {'cart': cart})
-
 
 
 # update Cart views
@@ -48,11 +45,10 @@ def cart_detail(request):
 def cart_updated(request, id):
     cart = Cart(request)
     if request.method == 'POST':
-        number= int(request.POST.get('number'))
+        number = int(request.POST.get('number'))
     product = get_object_or_404(Product, id=id)
     cart.add(product=product, quantity=number, update_quantity=True)
     return redirect(cart_detail)
-
 
 
 # Checkout views
@@ -73,41 +69,36 @@ def checkOutViews(request):
         return render(request, 'design/wlc.html', {'order': order})
     else:
         form = OrderCreateForm()
-    return render(request, 'design/checkout.html', {'form': form, 'cart':cart})
-
+    return render(request, 'design/checkout.html', {'form': form, 'cart': cart})
 
 
 # Order list dashboard
 @login_required(login_url='singup_views')
 def orderListViews(request):
     order_list = OrderItem.objects.all().select_related('order').select_related('product').order_by('-id')[:6]
-    context    = {
-        'order_list' : order_list
+    context = {
+        'order_list': order_list
     }
     template_name = 'admin/order-list.html'
     return render(request, template_name, context)
-
 
 
 # Dashboard DraftViews views
 @login_required(login_url='singup_views')
 def draftViews(request):
     site_note = SiteNote.objects.all().order_by('-id')
-    context   = {
-        'site_note' : site_note
+    context = {
+        'site_note': site_note
     }
     template_name = 'admin/note.html'
     return render(request, template_name, context)
 
 
-
 # Dashboard compose mail views
 @login_required(login_url='singup_views')
 def composeMailViews(request):
-
     template_name = 'admin/mail/compose.html'
     return render(request, template_name)
-
 
 
 # Product inbox mail views
@@ -116,9 +107,9 @@ def inboxMailViews(request):
     inbox_obj = OrderItem.objects.all().select_related('order').select_related('product').order_by('-id')
     # # Pagination
     paginator = Paginator(inbox_obj, 7)
-    page      = request.GET.get('page')
+    page = request.GET.get('page')
     inbox_obj = paginator.get_page(page)
-    context   = {'inbox_obj': inbox_obj}
+    context = {'inbox_obj': inbox_obj}
     template_name = 'admin/mail/inbox.html'
     return render(request, template_name, context)
 
@@ -126,26 +117,25 @@ def inboxMailViews(request):
 # product message read mail
 @login_required(login_url='singup_views')
 def readMailViews(request, id):
-    orderTable  = get_object_or_404(OrderItem, id = id)
-    orderTable2 = get_object_or_404(Order, id = id)
+    orderTable = get_object_or_404(OrderItem, id=id)
+    orderTable2 = get_object_or_404(Order, id=id)
 
-    context     = {
-        'orderTable' : orderTable,
-        'orderTable2' : orderTable2
+    context = {
+        'orderTable': orderTable,
+        'orderTable2': orderTable2
     }
     template_name = 'admin/mail/mail-read.html'
     return render(request, template_name, context)
 
 
-
 # Trams and condtion views
 class TramsConditonViews(View):
     def get(self, request):
-        cart        = Cart(request)
-        category    = Category.objects.all()
-        context     = {
-            'cart'     : cart,
-            'category' : category,
+        cart = Cart(request)
+        category = Category.objects.all()
+        context = {
+            'cart': cart,
+            'category': category,
         }
         template_name = 'design/terms-conditions.html'
         return render(request, template_name, context)
@@ -154,38 +144,37 @@ class TramsConditonViews(View):
 # Trams and condtion views
 class AboutusViews(View):
     def get(self, request):
-        cart        = Cart(request)
-        category    = Category.objects.all()
-        context     = {
-            'cart'     : cart,
-            'category' : category,
+        cart = Cart(request)
+        category = Category.objects.all()
+        context = {
+            'cart': cart,
+            'category': category,
         }
         template_name = 'design/about.html'
         return render(request, template_name, context)
-
 
 
 # User Register form
 @login_required(login_url='singup_views')
 def userRegiserView(request):
     users = User.objects.all()
-    form  = UserRegiser()
+    form = UserRegiser()
 
     # Search query
     search_query = request.GET.get('search_item')
     if search_query:
-        users = users.filter(username__icontains = search_query)
+        users = users.filter(username__icontains=search_query)
 
     # Pagination
     paginator = Paginator(users, 8)
-    page      = request.GET.get('page')
-    users     = paginator.get_page(page)
+    page = request.GET.get('page')
+    users = paginator.get_page(page)
     # import pdb; pdb.set_trace()
 
     if request.method == 'POST':
         form = UserRegiser(request.POST)
         if form.is_valid():
-            instance = form.save(commit = False)
+            instance = form.save(commit=False)
             instance.save()
             messages.add_message(request, messages.INFO, "User Created")
             return redirect(userRegiserView)
@@ -194,43 +183,40 @@ def userRegiserView(request):
             return redirect(userRegiserView)
 
     context = {
-        'users' : users,
-        'form'  : form
+        'users': users,
+        'form': form
     }
     template_name = 'admin/auth/user.html'
     return render(request, template_name, context)
 
 
-
 # Update User Register
 @login_required(login_url='singup_views')
 def updateUserView(request, id):
-    obj = get_object_or_404(User, id = id)
+    obj = get_object_or_404(User, id=id)
     if request.method == 'POST':
-        form = UserRegiser(request.POST, instance = obj)
+        form = UserRegiser(request.POST, instance=obj)
         if form.is_valid():
             form.save()
             messages.add_message(request, messages.INFO, 'User updated')
             return redirect(userRegiserView)
         else:
             messages.add_message(request, messages.INFO, 'user update invalid. try again')
-    form = UserRegiser(instance = obj)
+    form = UserRegiser(instance=obj)
     context = {
-        'form' : form
+        'form': form
     }
     template_name = 'admin/auth/user.html'
     return render(request, template_name, context)
 
 
-
 # User Register delete
 @login_required(login_url='singup_views')
 def deleteUserView(request, id):
-    user_delete = get_object_or_404(User, id = id)
+    user_delete = get_object_or_404(User, id=id)
     user_delete.delete()
     messages.add_message(request, messages.INFO, "User Delete")
     return redirect(userRegiserView)
-
 
 
 # 404 page
