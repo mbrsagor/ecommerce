@@ -18,18 +18,21 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
+DEFAULT_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+]
 
-    # New App
+LOCAL_APPS = [
     'eshop',
     'ecommerce',
 ]
+
+INSTALLED_APPS = DEFAULT_APPS + LOCAL_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -71,7 +74,7 @@ DATABASES = {
         'USER': 'db_user',
         'PASSWORD': 'db_password',
         'HOST': 'localhost',  # Your host name
-        'PORT': '',  # Your DB port here
+        'PORT': 5432,  # Your DB port here
     }
 }
 

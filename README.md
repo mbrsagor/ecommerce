@@ -27,7 +27,7 @@ DATABASES = {
         'USER': 'bduser',
         'PASSWORD': 'dbpassword',
         'HOST': 'localhost',
-        'PORT': 'bd_port',
+        'PORT': 5432,
     }
 }
 ```
@@ -41,7 +41,7 @@ python manage.py createsuperuser
 python manage.py runserver
 ```
 
-###### Happy coding ######
+###### Happy coding :) ######
 
 
 ###### Features:
