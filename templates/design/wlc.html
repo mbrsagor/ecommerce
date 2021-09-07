@@ -1,0 +1,20 @@
+{% extends 'app/base-header.html' %}
+{% load static %}
+
+{% block title %} Finish shoping {% endblock %}
+
+{% block body %}
+<div class="body-content outer-top-bd">
+	<div class="container">
+		<div class="x-page inner-bottom-sm">
+			<div class="row">
+				<div class="col-md-12 x-text text-center">
+					<h1 style="font-size: 100px">Thank for shoping</h1>
+					<p>Service available 24 hours 7 days </p>
+					<a href="{% url 'HomepageViews' %}"><i class="fa fa-home"></i> Again Shopping</a>
+				</div>
+			</div><!-- /.row -->
+		</div><!-- /.sigin-in-->
+	</div><!-- /.container -->
+</div><!-- /.body-content -->
+{% endblock %}

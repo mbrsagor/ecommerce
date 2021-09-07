@@ -1,0 +1,106 @@
+{% extends 'app/base-header.html' %}
+{% load static %}
+
+{% block title %} shopping-cart {% endblock %}
+
+{% block body %}
+
+<div class="breadcrumb">
+	<div class="container">
+		<div class="breadcrumb-inner">
+			<ul class="list-inline list-unstyled">
+				<li><a href="/">Home</a></li>
+				<li class='active'>Shopping Cart</li>
+			</ul>
+		</div><!-- /.breadcrumb-inner -->
+	</div><!-- /.container -->
+</div><!-- /.breadcrumb -->
+
+<div class="body-content outer-top-xs">
+	<div class="container">
+		<div class="row ">
+			<div class="shopping-cart">
+				<div class="shopping-cart-table ">
+	<div class="table-responsive">
+		<table class="table">
+			<thead>
+				<tr>
+					<th class="cart-romove item">Remove</th>
+					<th class="cart-description item">Image</th>
+					<th class="cart-product-name item">Product Name</th>
+					<th class="cart-qty item">Quantity</th>
+					<th class="cart-sub-total item">Price</th>
+					<th class="cart-total last-item">Grandtotal</th>
+				</tr>
+			</thead><!-- /thead -->
+			<tfoot>
+				<tr>
+					<td colspan="7">
+						<div class="shopping-cart-btn">
+							<span class="">
+								<a href="{% url 'HomepageViews' %}" class="btn btn-upper btn-primary outer-left-xs">Continue Shopping</a>
+								<a href="{% url 'checkOutViews' %}" class="btn btn-upper btn-primary pull-right outer-right-xs">you may Checkout form here</a>
+							</span>
+						</div><!-- /.shopping-cart-btn -->
+					</td>
+				</tr>
+			</tfoot>
+			<tbody>
+
+				{% for item in cart %}
+			  {% with product=item.product  %}
+				<tr>
+					<td class="romove-item"><a href="{% url 'cart_remove' product.id %}" title="cancel" class="icon"><i class="fa fa-trash-o"></i></a></td>
+					<td class="cart-image">
+					    <img src="{{product.product_image}}" alt="">
+					</td>
+					<td class="cart-product-name-info">
+						<h4 class='cart-product-description'>{{product.name}}</h4>
+						<div class="cart-product-info">
+								<span class="product-color">COLOR:<span>{{product.product_color}}</span></span>
+						</div>
+					</td>
+					<td class="cart-product-quantity">
+							<form action="{% url 'cart_updated' product.id %}" method="post">
+                  {% csrf_token %}
+									<input class="cartpage-input" type="number" name="number" value="{{ item.update_quantity_form.quantity }}" min="1">
+                  <input type="submit" value="Update" class="btn btn-info">
+              </form>
+            </td>
+					<td class="cart-product-sub-total"><span class="cart-sub-total-price">৳{{product.product_price}}</span></td>
+					<td class="cart-product-grand-total"><span class="cart-grand-total-price">৳{{item.total_price}}</span></td>
+				</tr>
+				{% endwith %}
+				{% endfor %}
+
+			</tbody><!-- /tbody -->
+		</table><!-- /table -->
+	</div>
+</div><!-- /.shopping-cart-table -->
+<div class="col-md-4 col-sm-12 cart-shopping-total">
+	<table class="table">
+		<thead>
+			<tr>
+				<th>
+					<div class="cart-grand-total">
+						Grand Total<span class="inner-left-md">৳{{ cart.get_total_price }}</span>
+					</div>
+				</th>
+			</tr>
+		</thead><!-- /thead -->
+		<tbody>
+				<tr>
+					<td>
+						<div class="cart-checkout-btn pull-right">
+							<button onclick="window.location.href='{% url 'checkOutViews'  %}'" class="btn btn-primary checkout-btn">PROCCED TO CHEKOUT</button>
+						</div>
+					</td>
+				</tr>
+		</tbody><!-- /tbody -->
+	</table><!-- /table -->
+</div>
+</div>
+		</div>
+</div>
+</div>
+{% endblock %}

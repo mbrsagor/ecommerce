@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Login Page | metafor</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+{% load static %}
+	<link rel="icon" type="image/png" sizes="32x32" href="{% static 'admin/assets/img/favicon/favicon-32x32.png' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'admin/login/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'admin/login/main.css' %}">
+<!--===============================================================================================-->
+</head>
+<body>
+
+	<div class="limiter">
+		<div class="container-login100">
+			<div class="wrap-login100">
+				<form method="POST" class="login100-form validate-form">
+          {% csrf_token %}
+          <!-- message framework -->
+           {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                <div style="color:#f00; text-align:center, font-size:20px" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
+                {% endfor %}
+            </div>
+          {% endif %}
+          <!-- end message framework -->
+					<span class="login100-form-title p-b-34">
+						Administrator Login
+					</span>
+
+					<div class="wrap-input100 rs1-wrap-input100 validate-input m-b-20" data-validate="Type user name">
+						<input id="first-name" class="input100" type="text" name="username" placeholder="User name" required>
+						<span class="focus-input100"></span>
+					</div>
+					<div class="wrap-input100 rs2-wrap-input100 validate-input m-b-20" data-validate="Type password">
+						<input class="input100" type="password" name="password" placeholder="Password" required>
+						<span class="focus-input100"></span>
+					</div>
+
+					<div class="container-login100-form-btn">
+						<button type="submit" class="login100-form-btn">
+							Sign in
+						</button>
+					</div>
+				</form>
+
+				<div class="login100-more" style="background-image: url('{% static '/admin/login/bg-01.jpg' %}');"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

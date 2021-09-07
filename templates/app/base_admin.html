@@ -1,0 +1,285 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="description" content="Seipkon is a Premium Quality Admin Site Responsive Template" />
+      <meta name="keywords" content="admin template, admin, admin dashboard, cms, Seipkon Admin, premium admin templates, responsive admin, panel, software, ui, web app, application" />
+      <meta name="author" content="Themescare">
+      <!-- Title -->
+      <title>{% block title %} {% endblock %}</title>
+      <!-- Favicon -->
+      <link rel="icon" type="image/png" sizes="32x32" href="{% static 'admin/assets/img/favicon/favicon-32x32.png' %}">
+      <!-- Animate CSS -->
+      <link rel="stylesheet" href="{% static 'admin/assets/css/animate.min.css' %}">
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="{% static 'admin/assets/plugins/bootstrap/bootstrap.min.css' %}">
+      <!-- Font awesome CSS -->
+      <link rel="stylesheet" href="{% static 'admin/assets/plugins/font-awesome/font-awesome.min.css' %}">
+      <!-- Bootstrap-select CSS -->
+      <link rel="stylesheet" href="{% static 'admin/assets/plugins/bootstrap-select/css/bootstrap-select.min.css' %}">
+      <!-- Themify Icon CSS -->
+      <link rel="stylesheet" href="{% static 'admin/assets/plugins/themify-icons/themify-icons.css' %}">
+      <!-- Perfect Scrollbar CSS -->
+      <link rel="stylesheet" href="{% static 'admin/assets/plugins/perfect-scrollbar/perfect-scrollbar.min.css' %}">
+      <!-- Jvector CSS -->
+      <link rel="stylesheet" href="{% static 'admin/assets/plugins/jvector/css/jquery-jvectormap.css' %}">
+      <!-- Daterange CSS -->
+      <link rel="stylesheet" href="{% static 'admin/assets/plugins/daterangepicker/css/daterangepicker.css' %}">
+      <!-- Bootstrap-select CSS -->
+      <link rel="stylesheet" href="{% static 'admin/assets/plugins/bootstrap-select/css/bootstrap-select.min.css' %}">
+      <!-- Summernote CSS -->
+      <link rel="stylesheet" href="{% static 'admin/assets/plugins/summernote/css/summernote.css' %}">
+      <!-- Main CSS -->
+      <link rel="stylesheet" href="{% static 'admin/assets/css/seipkon.css' %}">
+      <!-- Responsive CSS -->
+      <link rel="stylesheet" href="{% static 'admin/assets/css/responsive.css' %}">
+   </head>
+   <body>
+
+      <!-- Start Page Loading -->
+      <div id="loader-wrapper">
+         <div id="loader"></div>
+         <div class="loader-section section-left"></div>
+         <div class="loader-section section-right"></div>
+      </div>
+      <!-- End Page Loading -->
+
+      <!-- Wrapper Start -->
+      <div class="wrapper">
+         <!-- Main Header Start -->
+         <header class="main-header">
+
+            <!-- Logo Start -->
+            <div class="seipkon-logo">
+               <a href="{% url 'DashboardViews' %}">
+               <img src="{% static 'admin/assets/img/logo.png' %}" alt="logo">
+               </a>
+            </div>
+            <!-- Logo End -->
+
+            <!-- Header Top Start -->
+            <nav class="navbar navbar-default">
+               <div class="container-fluid">
+                  <div class="header-top-section">
+                     <div class="pull-left">
+
+                        <!-- Collapse Menu Btn Start -->
+                        <button type="button" id="sidebarCollapse" class=" navbar-btn">
+                        <i class="fa fa-bars"></i>
+                        </button>
+                        <!-- Collapse Menu Btn End -->
+                     </div>
+                     <div class="header-top-right-section pull-right">
+                        <ul class="nav nav-pills nav-top navbar-right">
+
+                           <!-- Full Screen Btn Start -->
+                           <li>
+                              <a href="#"  id="fullscreen-button">
+                              <i class="fa fa-arrows-alt"></i>
+                              </a>
+                           </li>
+                           <!-- Full Screen Btn End -->
+
+                           <!-- singout -->
+                           <li>
+                             <a href="{% url 'SingoutViews' %}"><i class="fa fa-power-off"></i> sign out</a>
+                           </li>
+                           <!-- Profile singout End -->
+
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </nav>
+            <!-- Header Top End -->
+
+         </header>
+         <!-- Main Header End -->
+         <!-- Sidebar Start -->
+         <aside class="seipkon-main-sidebar">
+            <nav id="sidebar">
+               <!-- Sidebar Profile Start -->
+               <div class="sidebar-profile clearfix">
+                  <div class="profile-avatar">
+                     <img src="{% static 'admin/assets/img/avatar.jpg' %}" alt="profile" />
+                  </div>
+                  <div class="profile-info">
+                     <h3>{{ user.username }}</h3>
+                     {% if user.id == 1 %}
+                     <p>Superuser</p>
+                     {% else %}
+                     <p>General user</p>
+                     {% endif %}
+                  </div>
+               </div>
+               <!-- Sidebar Profile End -->
+
+               <!-- Menu Section Start -->
+               <div class="menu-section">
+                  <ul class="list-unstyled components">
+                     <li class="active">
+                        <a href="{% url 'DashboardViews' %}">
+                        <i class="fa fa-dashboard"></i>
+                        Dashboard
+                        </a>
+                     </li>
+                     <li>
+                        <a href="#ecommerce" data-toggle="collapse" aria-expanded="false">
+                        <i class="fa fa-shopping-cart"></i>
+                        e-Commerce
+                        </a>
+                        <ul class="collapse list-unstyled" id="ecommerce">
+                           <li><a href="{% url 'AllProductViews' %}">all products</a></li>
+                           <li><a href="{% url 'addNewItemViews' %}">add new product</a></li>
+                           <li><a href="{% url 'orderListViews' %}">Order List</a></li>
+                        </ul>
+                     </li>
+                     <li>
+                        <a href="#apps" data-toggle="collapse" aria-expanded="false">
+                        <i class="fa fa-spinner"></i>
+                        Product Settings
+                        </a>
+                        <ul class="collapse list-unstyled" id="apps">
+                           <li><a href="{% url 'categoryViews' %}">Add Category</a></li>
+                           <li><a href="{% url 'addColorViews' %}">Add Color</a></li>
+                           <li><a href="{% url 'addBrandViews' %}">Add Brand</a></li>
+                           <li><a href="{% url 'addSizeViews' %}">Add Size</a></li>
+                           <li><a href="{% url 'addWarrantyViews' %}">Add Warranty</a></li>
+                           <li><a href="{% url 'addAvailabilityViews' %}">Add Availabilitye</a></li>
+                           <li><a href="{% url 'addDaliveryViews' %}">Add Dalivery System</a></li>
+                        </ul>
+                     </li>
+                     {% if perms.user %}
+                     <li>
+                        <a href="#mail" data-toggle="collapse" aria-expanded="false">
+                        <i class="fa fa-envelope"></i>
+                        mailbox
+                        </a>
+                        <ul class="collapse list-unstyled" id="mail">
+                           <li><a href="{% url 'composeMailViews' %}">compose</a></li>
+                           <li><a href="{% url 'inboxMailViews' %}">inbox</a></li>
+                        </ul>
+                     </li>
+                     {% endif %}
+                      {% if perms.user %}
+                     <li>
+                        <a href="#ui_elements" data-toggle="collapse" aria-expanded="false">
+                        <i class="fa fa-laptop"></i>
+                        Sliders
+                        </a>
+                        <ul class="collapse list-unstyled" id="ui_elements">
+                           <li><a href="{% url 'addSliderView' %}">Add New Slider</a></li>
+                           <li><a href="{% url 'sliderBottomBox' %}">Slider Bottom</a></li>
+                        </ul>
+                     </li>
+                     {% endif %}
+                     {% if perms.user %}
+                     <li>
+                        <a href="#ads" data-toggle="collapse" aria-expanded="false">
+                        <i class="fa fa-laptop"></i>
+                        Ads Options
+                        </a>
+                        <ul class="collapse list-unstyled" id="ads">
+                           <li><a href="{% url 'addSliderAdsView' %}">Slider bottom ads</a></li>
+                           <li><a href="{% url 'addHomepageView' %}">Home Middle Ads</a></li>
+                        </ul>
+                     </li>
+                      {% endif %}
+                     {% if perms.user %}
+                     <li>
+                        <a href="#setting" data-toggle="collapse" aria-expanded="false">
+                        <i class="fa fa-gear"></i>
+                        Settings
+                        </a>
+                        <ul class="collapse list-unstyled" id="setting">
+                           <li><a href="{% url 'draftViews' %}">Draft</a></li>
+                           <li><a href="">Bank Account</a></li>
+                           <li><a href="">Payment Option</a></li>
+                        </ul>
+                     </li>
+                      {% endif %}
+                     {% if perms.user %}
+                      <li> <a href="{% url 'users' %}"><i class="fa fa-user"></i>  Add User</a></li>
+                    {% endif %}
+                  </ul>
+               </div>
+               <!-- Menu Section End -->
+            </nav>
+         </aside>
+         <!-- End Sidebar -->
+
+<!-- main block start -->
+{% block body %}
+
+{% endblock %}
+<!-- end main block  -->
+
+
+<!-- Footer Area Start -->
+<footer class="seipkon-footer-area">
+   <p>All right Reserved develop by <a href="http://www.sourcecodesoft.com">SourceCodeSoft</a></p>
+</footer>
+<!-- End Footer Area -->
+
+</section>
+<!-- End Right Side Content -->
+
+</div>
+<!-- End Wrapper -->
+
+
+<!-- jQuery -->
+<script src="{% static 'admin/assets/js/jquery-3.1.0.min.js' %}"></script>
+<!-- Bootstrap JS -->
+<script src="{% static 'admin/assets/plugins/bootstrap/bootstrap.min.js' %}"></script>
+<!-- Bootstrap-select JS -->
+<script src="{% static 'admin/assets/plugins/bootstrap-select/js/bootstrap-select.min.js' %}"></script>
+<!-- Daterange JS -->
+<script src="{% static 'admin/assets/plugins/daterangepicker/js/moment.min.js' %}"></script>
+<script src="{% static 'admin/assets/plugins/daterangepicker/js/daterangepicker.js' %}"></script>
+<!-- Jvector JS -->
+<script src="{% static 'admin/assets/plugins/jvector/js/jquery-jvectormap-1.2.2.min.js' %}"></script>
+<script src="{% static 'admin/assets/plugins/jvector/js/jquery-jvectormap-world-mill-en.js' %}"></script>
+<script src="{% static 'admin/assets/plugins/jvector/js/jvector-init.js' %}"></script>
+<!-- Raphael JS -->
+<script src="{% static 'admin/assets/plugins/raphael/js/raphael.min.js' %}"></script>
+<!-- Morris JS -->
+<script src="{% static 'admin/assets/plugins/morris/js/morris.min.js' %}"></script>
+<!-- Sparkline JS -->
+<script src="{% static 'admin/assets/plugins/sparkline/js/jquery.sparkline.js' %}"></script>
+<!-- Chart JS -->
+<script src="{% static 'admin/assets/plugins/charts/js/Chart.js' %}"></script>
+<!-- Datatables -->
+<script src="{% static 'admin/assets/plugins/datatables/js/jquery.dataTables.min.js' %}"></script>
+<!-- Perfect Scrollbar JS -->
+<script src="{% static 'admin/assets/plugins/perfect-scrollbar/jquery-perfect-scrollbar.min.js' %}"></script>
+<!-- Vue JS -->
+<script src="{% static 'admin/assets/plugins/vue/vue.min.js' %}"></script>
+<!-- Summernote JS -->
+<script src="{% static 'admin/assets/plugins/summernote/js/summernote.js' %}"></script>
+<script src="{% static 'admin/assets/plugins/summernote/js/custom-summernote.js' %}"></script>
+<!-- Custom Select JS -->
+<script src="{% static 'admin/assets/plugins/bootstrap-select/js/custom-select.js' %}"></script>
+<!-- Dashboard JS -->
+<script src="{% static 'admin/assets/js/dashboard.js' %}"></script>
+<!-- Custom JS -->
+<script src="{% static 'admin/assets/js/seipkon.js' %}"></script>
+<!-- Django Message Freamwork -->
+    <script>
+    $(document).ready(function() {
+        // messages timeout for 10 sec
+        setTimeout(function() {
+            $('.messages').fadeOut('slow');
+        }, 2000); // <-- time in milliseconds, 1000 =  1 sec
+
+        // delete message
+        $('.del-msg').live('click',function(){
+            $('.del-msg').parent().attr('style', 'display:none;');
+        })
+    });
+  </script>
+</body>
+</html>

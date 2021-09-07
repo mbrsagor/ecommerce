@@ -1,0 +1,528 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Meta -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<meta name="description" content="">
+<meta name="author" content="">
+<meta name="keywords" content="MediaCenter, Template, eCommerce">
+<meta name="robots" content="all">
+<title>{% block title %} {% endblock %}</title>
+<link rel="icon" type="image/x-icong" href="{% static 'assets/images/label.png' %}"/>
+
+<!-- Bootstrap Core CSS -->
+<link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+
+<!-- Customizable CSS -->
+<link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/blue.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/owl.carousel.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/owl.transitions.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/animate.min.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/rateit.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/bootstrap-select.min.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/lightbox.css' %}">
+
+<!-- Icons/Glyphs -->
+<link rel="stylesheet" href="{% static 'assets/css/font-awesome.css' %}">
+
+<!-- Fonts -->
+<link href='http://fonts.googleapis.com/css?family=Roboto:300,400,500,700' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,600,600italic,700,700italic,800' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+</head>
+<body class="cnt-home">
+<!-- ============================================== HEADER ============================================== -->
+<header class="header-style-1">
+
+  <!-- ============================================== TOP MENU ============================================== -->
+  <div class="top-bar animate-dropdown">
+    <div class="container">
+      <div class="header-top-inner">
+        <div class="cnt-account">
+          <ul class="list-unstyled">
+            <li><a href="{% url 'ShopViews' %}">Shop</a></li>
+            <li><a href="{% url 'cart_detail' %}">My Cart</a></li>
+            <li><a href="{% url 'checkOutViews' %}">Checkout</a></li>
+          </ul>
+        </div>
+        <!-- /.cnt-account -->
+        <div class="offer-text">Online service availability 24 hours 7 dasy</div>
+        <div class="clearfix"></div>
+      </div>
+      <!-- /.header-top-inner -->
+    </div>
+    <!-- /.container -->
+  </div>
+  <!-- /.header-top -->
+  <!-- ============================================== TOP MENU : END ============================================== -->
+  <div class="main-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-3 logo-holder">
+          <!-- ============================================================= LOGO ============================================================= -->
+          <div class="logo"> <a href="/"> <img src="{% static 'assets/images/logo.png' %}" alt="logo"> </a> </div>
+          <!-- /.logo -->
+          <!-- ============================================================= LOGO : END ============================================================= --> </div>
+        <!-- /.logo-holder -->
+
+        <div class="col-xs-12 col-sm-12 col-md-6 top-search-holder">
+          <!-- /.contact-row -->
+          <!-- ============================================================= SEARCH AREA ============================================================= -->
+          <div class="search-area">
+            <form action="{% url 'SearchViews' %}" method="GET">
+              <div class="control-group">
+                <ul class="categories-filter animate-dropdown">
+                  <li class="dropdown"> <a class="dropdown-toggle"  data-toggle="dropdown" href="#">Categories <b class="caret"></b></a>
+                    <ul class="dropdown-menu" role="menu" >
+                      {% for cat in category %}
+                      <li role="presentation"><a href="{% url 'CategoryViews' cat.name %}">- {{ cat.name }}</a></li>
+                      {% endfor %}
+                    </ul>
+                  </li>
+                </ul>
+                <input type="text" name="search_query" class="search-field" placeholder="Search here..." />
+                <button type="submit" class="search-button"></button>
+              </div>
+            </form>
+          </div>
+          <!-- /.search-area -->
+          <!-- ============================================================= SEARCH AREA : END ============================================================= --> </div>
+        <!-- /.top-search-holder -->
+
+        <div class="col-xs-12 col-sm-12 col-md-3 animate-dropdown top-cart-row">
+          <!-- ============================================================= SHOPPING CART DROPDOWN ============================================================= -->
+
+          <div class="dropdown dropdown-cart"> <a href="#" class="dropdown-toggle lnk-cart" data-toggle="dropdown">
+            {% with totail_items=cart|length %}
+                   {% if cart|length > 0 %}
+                       <div class="items-cart-inner">
+                         <div class="top-cart">  </div>
+                         <div class="total-price-basket"> <span class="lbl"> {{ totail_items }}  item{{totail_items|pluralize}}/</span> <span class="total-price"> <span class="sign">৳</span><span class="value">{{cart.get_total_price}}</span> </span> </div>
+                       </div>
+                       {% else %}
+                       0 items/ ৳0.00
+                   {% endif %}
+               {% endwith %}
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                {% for item in cart %}
+        			  {% with product=item.product  %}
+                <div class="cart-item product-summary">
+                  <div class="row">
+                    <div class="col-xs-4">
+                      <div class="image">
+                      <img src="{{product.product_image}}" alt="">
+                      </div>
+                    </div>
+                    <div class="col-xs-7">
+                      <h3 class="name">{{product.name}}</h3>
+                      <div class="price">৳{{product.product_price}}</div>
+                    </div>
+                    <div class="col-xs-1 action"> <a href="{% url 'cart_remove' product.id %}"><i class="fa fa-trash"></i></a> </div>
+                  </div>
+                </div>
+                {% endwith %}
+                {% endfor %}
+                <!-- /.cart-item -->
+                <div class="clearfix cart-total">
+                  <a href="{% url 'checkOutViews' %}" class="btn btn-upper btn-primary btn-block m-t-20">Checkout</a>
+                </div>
+                <!-- /.cart-total-->
+              </li>
+            </ul>
+            <!-- /.dropdown-menu-->
+          </div>
+          <!-- /.dropdown-cart -->
+
+          <!-- ============================================================= SHOPPING CART DROPDOWN : END============================================================= --> </div>
+        <!-- /.top-cart-row -->
+      </div>
+      <!-- /.row -->
+
+    </div>
+    <!-- /.container -->
+
+  </div>
+  <!-- /.main-header -->
+
+	<!-- ============================================== NAVBAR ============================================== -->
+<div class="header-nav animate-dropdown">
+    <div class="container">
+        <div class="yamm navbar navbar-default" role="navigation">
+            <div class="navbar-header">
+                <button data-target="#mc-horizontal-menu-collapse" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="nav-bg-class">
+                <div class="navbar-collapse collapse" id="mc-horizontal-menu-collapse">
+	<div class="nav-outer">
+		<ul class="nav navbar-nav">
+			<li>
+				<a href="{% url 'HomepageViews' %}" data-hover="dropdown" class="dropdown-toggle">Home</a>
+
+			</li>
+			<li class="dropdown yamm mega-menu">
+				<a href="#" data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Woman-Fashion</a>
+                <ul class="dropdown-menu container">
+					<li>
+               						<div class="yamm-content ">
+            <div class="row">
+
+                   <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
+                        <h2 class="title">Baby</h2>
+                        <ul class="links">
+                            <li><a href="http://127.0.0.1:8000/category/Woman%20fashion/">Dresses</a></li>
+                            <li><a href="http://127.0.0.1:8000/category/Woman%20fashion/">Shoes </a></li>
+                            <li><a href="http://127.0.0.1:8000/category/Woman%20fashion/">Jackets</a></li>
+                            <li><a href="http://127.0.0.1:8000/category/Woman%20fashion/">Sunglasses</a></li>
+                            <li><a href="http://127.0.0.1:8000/category/Woman%20fashion/">Sport Wear</a></li>
+                             <li><a href="http://127.0.0.1:8000/category/Woman%20fashion/">Blazers</a></li>
+                              <li><a href="http://127.0.0.1:8000/category/Woman%20fashion/">Shirts</a></li>
+
+                        </ul>
+                    </div><!-- /.col -->
+
+                    <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
+                        <h2 class="title">Women</h2>
+                        <ul class="links">
+                            <li><a href="http://127.0.0.1:8000/category/Woman%20fashion/">Handbags</a></li>
+                            <li><a href="http://127.0.0.1:8000/category/Woman%20fashion/">Jwellery</a></li>
+                            <li><a href="http://127.0.0.1:8000/category/Woman%20fashion/">Swimwear </a></li>
+                            <li><a href="http://127.0.0.1:8000/category/Woman%20fashion/">Tops</a></li>
+                            <li><a href="http://127.0.0.1:8000/category/Woman%20fashion/">Flats</a></li>
+                             <li><a href="http://127.0.0.1:8000/category/Woman%20fashion/">Shoes</a></li>
+                              <li><a href="http://127.0.0.1:8000/category/Woman%20fashion/">Winter Wear</a></li>
+
+                        </ul>
+                    </div><!-- /.col -->
+
+                    <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
+                        <h2 class="title">Boys</h2>
+                        <ul class="links">
+                            <li><a href="#">Toys & Games</a></li>
+                            <li><a href="#">Jeans</a></li>
+                            <li><a href="#">Shirts</a></li>
+                            <li><a href="#">Shoes</a></li>
+                             <li><a href="#">School Bags</a></li>
+                              <li><a href="#">Lunch Box</a></li>
+                               <li><a href="#">Footwear</a></li>
+
+                        </ul>
+                    </div><!-- /.col -->
+
+                    <div class="col-xs-12 col-sm-6 col-md-2 col-menu">
+                        <h2 class="title">Girls</h2>
+                        <ul class="links">
+                            <li><a href="#">Sandals </a></li>
+                            <li><a href="#">Shorts</a></li>
+                            <li><a href="#">Dresses</a></li>
+                            <li><a href="#">Jwellery</a></li>
+                            <li><a href="#">Bags</a></li>
+                             <li><a href="#">Night Dress</a></li>
+                              <li><a href="#">Swim Wear</a></li>
+
+
+                        </ul>
+                    </div><!-- /.col -->
+
+
+       <div class="col-xs-12 col-sm-6 col-md-4 col-menu banner-image">
+        <img class="img-responsive" src="{% static 'assets/images/banners/top-menu-banner.jpg' %}" alt="">
+</div><!-- /.yamm-content -->
+</div>
+</div>
+
+</li>
+				</ul>
+
+			</li>
+
+			<li class="dropdown mega-menu">
+				<a href="category.html"  data-hover="dropdown" class="dropdown-toggle" data-toggle="dropdown">Man-Fashion
+				   <span class="menu-label hot-menu hidden-xs">hot</span>
+				</a>
+                <ul class="dropdown-menu container">
+					<li>
+						<div class="yamm-content">
+    <div class="row">
+           <div class="col-xs-12 col-sm-12 col-md-2 col-menu">
+                <h2 class="title">Laptops</h2>
+                <ul class="links">
+                   <li><a href="#">Gaming</a></li>
+                   <li><a href="#">Laptop Skins</a></li>
+                    <li><a href="#">Apple</a></li>
+                    <li><a href="#">Dell</a></li>
+                    <li><a href="#">Lenovo</a></li>
+                    <li><a href="#">Microsoft</a></li>
+                    <li><a href="#">Asus</a></li>
+                     <li><a href="#">Adapters</a></li>
+                     <li><a href="#">Batteries</a></li>
+                     <li><a href="#">Cooling Pads</a></li>
+                </ul>
+            </div><!-- /.col -->
+
+            <div class="col-xs-12 col-sm-12 col-md-2 col-menu">
+                <h2 class="title">Desktops</h2>
+                <ul class="links">
+                    <li><a href="#">Routers & Modems</a></li>
+                    <li><a href="#">CPUs, Processors</a></li>
+                    <li><a href="#">PC Gaming Store</a></li>
+                    <li><a href="#">Graphics Cards</a></li>
+                    <li><a href="#">Components</a></li>
+                    <li><a href="#">Webcam</a></li>
+                    <li><a href="#">Memory (RAM)</a></li>
+                    <li><a href="#">Motherboards</a></li>
+                    <li><a href="#">Keyboards</a></li>
+                    <li><a href="#">Headphones</a></li>
+                </ul>
+            </div><!-- /.col -->
+
+            <div class="col-xs-12 col-sm-12 col-md-2 col-menu">
+                <h2 class="title">Cameras</h2>
+                <ul class="links">
+                    <li><a href="#">Accessories</a></li>
+                    <li><a href="#">Binoculars</a></li>
+                    <li><a href="#">Telescopes</a></li>
+                    <li><a href="#">Camcorders</a></li>
+                    <li><a href="#">Digital</a></li>
+                     <li><a href="#">Film Cameras</a></li>
+                     <li><a href="#">Flashes</a></li>
+                     <li><a href="#">Lenses</a></li>
+                     <li><a href="#">Surveillance</a></li>
+                      <li><a href="#">Tripods</a></li>
+
+                </ul>
+            </div><!-- /.col -->
+            <div class="col-xs-12 col-sm-12 col-md-2 col-menu">
+                <h2 class="title">Mobile Phones</h2>
+                <ul class="links">
+                    <li><a href="#">Apple</a></li>
+                    <li><a href="#">Samsung</a></li>
+                    <li><a href="#">Lenovo</a></li>
+                    <li><a href="#">Motorola</a></li>
+                    <li><a href="#">LeEco</a></li>
+                    <li><a href="#">Asus</a></li>
+                    <li><a href="#">Acer</a></li>
+                    <li><a href="#">Accessories</a></li>
+                    <li><a href="#">Headphones</a></li>
+                     <li><a href="#">Memory Cards</a></li>
+                </ul>
+            </div>
+
+             <div class="col-xs-12 col-sm-12 col-md-4 col-menu custom-banner">
+             <a href="#"><img alt="" src="{% static 'assets/images/banners/banner-side.png' %}"></a>
+             </div>
+    </div><!-- /.row -->
+</div><!-- /.yamm-content -->					</li>
+				</ul>
+			</li>
+			<li class="dropdown hidden-sm">
+
+				<a href="http://127.0.0.1:8000/category/Tech/">Tech
+				    <span class="menu-label new-menu hidden-xs">new</span>
+				</a>
+			</li>
+
+			<li class="dropdown hidden-sm">
+				<a href="http://127.0.0.1:8000/category/Foods/">Foods</a>
+			</li>
+
+			<li class="dropdown">
+				<a href="http://127.0.0.1:8000/category/Book/">Books</a>
+			</li>
+
+            <li class="dropdown">
+				<a href="http://127.0.0.1:8000/category/Others/">Others</a>
+			</li>
+            <li class="dropdown">
+				<a href="#">Kids & Girls</a>
+			</li>
+		</ul><!-- /.navbar-nav -->
+		<div class="clearfix"></div>
+	</div><!-- /.nav-outer -->
+</div><!-- /.navbar-collapse -->
+
+
+            </div><!-- /.nav-bg-class -->
+        </div><!-- /.navbar-default -->
+    </div><!-- /.container-class -->
+
+</div><!-- /.header-nav -->
+<!-- ============================================== NAVBAR : END ============================================== -->
+
+</header>
+
+{% block body %}
+
+
+{% endblock %}
+
+
+<!-- ============================================================= FOOTER ============================================================= -->
+<footer id="footer" class="footer color-bg">
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-3">
+          <div class="module-heading">
+            <h4 class="module-title">Contact Us</h4>
+          </div>
+          <!-- /.module-heading -->
+
+          <div class="module-body">
+            <ul class="toggle-footer" style="">
+              <li class="media">
+                <div class="pull-left"> <span class="icon fa-stack fa-lg"> <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i> </span> </div>
+                <div class="media-body">
+                  <p>Themesstock, 789 Main rd, Anytown, CA 12345 USA</p>
+                </div>
+              </li>
+              <li class="media">
+                <div class="pull-left"> <span class="icon fa-stack fa-lg"> <i class="fa fa-mobile fa-stack-1x fa-inverse"></i> </span> </div>
+                <div class="media-body">
+                  <p>+88 01713457030</p>
+                </div>
+              </li>
+              <li class="media">
+                <div class="pull-left"> <span class="icon fa-stack fa-lg"> <i class="fa fa-envelope fa-stack-1x fa-inverse"></i> </span> </div>
+                <div class="media-body"> <span>sales.metaphorbd@gmail.com</span> </div>
+              </li>
+            </ul>
+          </div>
+          <!-- /.module-body -->
+        </div>
+        <!-- /.col -->
+
+        <div class="col-xs-12 col-sm-6 col-md-3">
+          <div class="module-heading">
+            <h4 class="module-title">Popular Category</h4>
+          </div>
+          <!-- /.module-heading -->
+
+          <div class="module-body">
+            <ul class='list-unstyled'>
+              {% for cat in category|slice:":5" %}
+              <li><a href="{% url 'CategoryViews' cat.name %}">{{ cat.name }}</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+          <!-- /.module-body -->
+        </div>
+        <!-- /.col -->
+
+        <div class="col-xs-12 col-sm-6 col-md-3">
+          <div class="module-heading">
+            <h4 class="module-title">Why Choose Us</h4>
+          </div>
+          <!-- /.module-heading -->
+
+          <div class="module-body">
+            <ul class='list-unstyled'>
+              <li class="first"><a href="{% url 'ShopViews' %}" title="Shop page">Shop</a></li>
+              <li><a href="{% url 'cart_detail' %}">My Cart</a></li>
+              <li><a href="{% url 'TramsConditonViews' %}" title="Trams & Condition">Trams & Condition</a></li>
+              <li><a href="{% url 'AboutusViews' %}" title="Trams & Condition">About us</a></li>
+              <li class=" last"><a href="{% url 'conactPageViews' %}" title="Contact us">Contact Us</a></li>
+            </ul>
+          </div>
+          <!-- /.module-body -->
+        </div>
+
+        <div class="col-xs-12 col-sm-6 col-md-3">
+          <div class="module-heading">
+            <h4 class="module-title">Facebook page</h4>
+          </div>
+          <!-- /.module-heading -->
+
+          <div class="module-body">
+            <div class="fb-page" data-href="https://www.facebook.com/BizBondit/" data-tabs="timeline" data-width="300" data-height="150" data-small-header="true" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/BizBondit/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/BizBondit/">BizBond IT Limited</a></blockquote></div>
+          </div>
+          <!-- /.module-body -->
+        </div>
+        <!-- /.col -->
+
+      </div>
+    </div>
+  </div>
+  <div class="copyright-bar">
+    <div class="container">
+      <div class="col-xs-12 col-sm-3 no-padding social">
+        <ul class="link">
+          <li class="fb pull-left"><a target="_blank" rel="nofollow" href="#" title="Facebook"></a></li>
+          <li class="tw pull-left"><a target="_blank" rel="nofollow" href="#" title="Twitter"></a></li>
+          <li class="googleplus pull-left"><a target="_blank" rel="nofollow" href="#" title="GooglePlus"></a></li>
+          <li class="linkedin pull-left"><a target="_blank" rel="nofollow" href="#" title="Linkedin"></a></li>
+          <li class="youtube pull-left"><a target="_blank" rel="nofollow" href="#" title="Youtube"></a></li>
+        </ul>
+      </div>
+      <div class="col-xs-12 col-sm-6">
+        <p>&copy; Copy wirte 2018 Metafor, All Rights Reserved || Develop by <a target="_blank" href="http://www.sourcecodesoft.com">SourceCodeSoft</a></p>
+      </div>
+      <div class="col-xs-12 col-sm-3 no-padding">
+        <div class="clearfix payment-methods">
+          <ul>
+            <li><img src="{% static 'assets/images/payments/1.png' %}" alt=""></li>
+            <li><img src="{% static 'assets/images/payments/2.png' %}" alt=""></li>
+            <li><img src="{% static 'assets/images/payments/3.png' %}" alt=""></li>
+            <li><img src="{% static 'assets/images/payments/4.png' %}" alt=""></li>
+          </ul>
+        </div>
+        <!-- /.payment-methods -->
+      </div>
+    </div>
+  </div>
+</footer>
+<!-- ============================================================= FOOTER : END============================================================= -->
+
+<!-- For demo purposes – can be removed on production -->
+
+<!-- For demo purposes – can be removed on production : End -->
+
+<!-- JavaScripts placed at the end of the document so the pages load faster -->
+<script src="{% static 'assets/js/jquery-1.11.1.min.js' %}"></script>
+<script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+<script src="{% static 'assets/js/bootstrap-hover-dropdown.min.js' %}"></script>
+<script src="{% static 'assets/js/owl.carousel.min.js' %}"></script>
+<script src="{% static 'assets/js/echo.min.js' %}"></script>
+<script src="{% static 'assets/js/jquery.easing-1.3.min.js' %}"></script>
+<script src="{% static 'assets/js/bootstrap-slider.min.js' %}"></script>
+<script src="{% static 'assets/js/jquery.rateit.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'assets/js/lightbox.min.js' %}"></script>
+<script src="{% static 'assets/js/bootstrap-select.min.js' %}"></script>
+<script src="{% static 'assets/js/wow.min.js' %}"></script>
+<script src="{% static 'assets/js/scripts.js' %}"></script>
+
+<!-- Facebook comment like share -->
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+<script>
+ window.fbAsyncInit = function() {
+  FB.init({
+   appId            : '<YOUR_APP_ID>',
+   autoLogAppEvents : true,
+   xfbml            : true,
+   version          : 'v2.11'
+  });
+ };
+</script>
+
+
+</body>
+</html>

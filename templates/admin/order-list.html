@@ -1,0 +1,89 @@
+{% extends 'app/base_admin.html' %}
+{% load static %}
+
+{% block title %} Order List {% endblock %}
+
+{% block body %}
+         <!-- Right Side Content Start -->
+         <section id="content" class="seipkon-content-wrapper">
+            <div class="page-content">
+               <div class="container-fluid">
+
+                  <!-- Breadcromb Row Start -->
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="breadcromb-area">
+                           <div class="row">
+                              <div class="col-md-6 col-sm-6">
+                                 <div class="seipkon-breadcromb-left">
+                                    <h3>Order List</h3>
+                                 </div>
+                              </div>
+                              <div class="col-md-6 col-sm-6">
+                                 <div class="seipkon-breadcromb-right">
+                                    <ul>
+                                       <li><a href="index.html">home</a></li>
+                                       <li>e-Commerce</li>
+                                       <li>Product order list</li>
+                                    </ul>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- End Breadcromb Row -->
+
+                  <!-- Product Table Row Start -->
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="page-box">
+                           <div class="table-responsive">
+                              <table id="product-order" class="table table-hover">
+                                 <thead>
+                                    <tr>
+                                       <th>Photo</th>
+                                       <th>Order ID</th>
+                                       <th>Customer</th>
+                                       <th>Title</th>
+                                       <th>Quantity</th>
+                                       <th>date</th>
+                                       <th>Status</th>
+                                       <th>Action</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                   {% if order_list %}
+                                   {% for item in order_list %}
+                                    <tr>
+                                       <td>
+                                          <img src="{{ item.product.product_image }}" alt="product" />
+                                       </td>
+                                       <td>#{{ item.order }}</td>
+                                       <td>{{ item.order.full_name }}</td>
+                                       <td>{{ item.product.name }}</td>
+                                       <td>{{ item.order.quantity }}</td>
+                                       <td>{{ item.order.created }}</td>
+                                       <td>
+                                          <span class="label label-success">paid</span>
+                                       </td>
+                                       <td>
+                                          <a href="#" class="product-table-danger" data-toggle="tooltip" title="Delete"><i class="fa fa-trash"></i></a>
+                                       </td>
+                                    </tr>
+                                    {% endfor %}
+                                    {% endif %}
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Product Table Row End -->
+               </div>
+            </div>
+         </section>
+         <!-- End Right Side Content -->
+      </div>
+      <!-- End Wrapper -->
+{% endblock %}

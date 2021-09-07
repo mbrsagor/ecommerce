@@ -1,0 +1,97 @@
+{% extends 'app/base-header.html' %}
+{% load static %}
+
+{% block title %} Shop-page {% endblock %}
+
+{% block body %}
+
+<div class="body-content outer-top-xs">
+  <div class='container'>
+    <div class='row single-product'>
+      <div class='col-md-12'>
+        <div class="search-result-container ">
+          <div id="myTabContent" class="tab-content category-list">
+            <div class="tab-pane active " id="grid-container">
+              <div class="category-product">
+                <div class="row">
+                  {% if shop_obj %}
+                  {% for product in shop_obj %}
+                  <div class="col-md-4 col-sm-6 wow fadeInUp">
+                    <div class="products">
+                      <div class="product">
+                        <div class="product-image">
+                          <div class="image">
+                            <a href="{% url 'productDetails_views' product.name %}">
+                              {% if not product.product_image %}
+                              <img src="{% static 'assets/images/demo.jpg' %}" alt="">
+                              {% else %}
+                              <img src="{{ product.product_image }}" alt="">
+                              {% endif %}
+                            </a>
+                          </div>
+                        </div>
+                        <div class="product-info text-left">
+                          <h3 class="name">
+                            <a href="{% url 'productDetails_views' product.name %}">{{ product.name }}</a>
+                          </h3>
+                          <div class="description"></div>
+                          <div class="product-price">
+                            <span class="price">  ৳{{ product.product_price }} </span>
+                             <span class="price-before-discount">৳{{ product.discount_price }}</span>
+                          </div>
+                        </div>
+                        <div class="cart clearfix animate-effect">
+                          <div class="action">
+                            <ul class="list-unstyled">
+                                <li class="add-cart-button btn-group">
+                                  <a href="{% url 'cart_add' product.id %}" data-toggle="tooltip" class="btn btn-primary icon" type="submit" data-original-title="Add Cart"> <i class="fa fa-shopping-cart"></i> </a>
+                                </li>
+                                <li class="lnk"> <a data-toggle="tooltip" class="add-to-cart" href="" data-original-title="Compare"> <i class="fa fa-signal" aria-hidden="true"></i> </a> </li>
+                              </ul>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /.item -->
+                  {% endfor %}
+                  {% endif %}
+                </div>
+                <!-- /.row -->
+              </div>
+              <!-- /.category-product -->
+            </div>
+          </div>
+          <!-- /.tab-content -->
+          <!-- <div class="clearfix filters-container"></div> -->
+          <!-- pagination -->
+          <div class="page-nation text-right">
+              {% if shop_obj.has_other_pages %}
+                <ul class="pagination">
+                  {% if shop_obj.has_previous %}
+                    <li><a href="?page={{ shop_obj.previous_page_number }}">&laquo;</a></li>
+                  {% else %}
+                    <li class="disabled"><span>&laquo;</span></li>
+                  {% endif %}
+                  {% for i in shop_obj.paginator.page_range %}
+                    {% if shop_obj.number == i %}
+                      <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                    {% else %}
+                      <li><a href="?page={{ i }}">{{ i }}</a></li>
+                    {% endif %}
+                  {% endfor %}
+                  {% if shop_obj.has_next %}
+                    <li><a href="?page={{ shop_obj.next_page_number }}">&raquo;</a></li>
+                  {% else %}
+                    <li class="disabled"><span>&raquo;</span></li>
+                  {% endif %}
+                </ul>
+              {% endif %}
+          </div>
+          <!-- pagination -->
+        </div>
+      </div>
+    </div>
+   </div>
+</div>
+{% endblock %}

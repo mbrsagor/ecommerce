@@ -1,0 +1,164 @@
+{% extends 'app/base_admin.html' %}
+{% load static %}
+
+{% block title %} Read Mail {% endblock %}
+
+{% block body %}
+         <!-- Right Side Content Start -->
+         <section id="content" class="seipkon-content-wrapper">
+            <div class="page-content">
+               <div class="container-fluid">
+
+                  <!-- Breadcromb Row Start -->
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="breadcromb-area">
+                           <div class="row">
+                              <div class="col-md-6 col-sm-6">
+                                 <div class="seipkon-breadcromb-left">
+                                    <h3>Read Mail </h3>
+                                 </div>
+                              </div>
+                              <div class="col-md-6 col-sm-6">
+                                 <div class="seipkon-breadcromb-right">
+                                    <ul>
+                                       <li><a href="{% url 'inboxMailViews' %}">Inbox</a></li>
+                                       <li>mailbox</li>
+                                       <li>read</li>
+                                    </ul>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- End Breadcromb Row -->
+
+                  <!-- Mail Compose Row Start -->
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="page-box">
+                           <div class="row">
+                              <div class="col-md-3 col-sm-4">
+                                 <div class="mailbox-left">
+                                    <a class="btn btn-success" href="{% url 'inboxMailViews' %}">
+                                    <i class="fa fa-inbox"></i>
+                                    back to inbox
+                                    </a>
+                                    <div class="mail-sidebar">
+                                       <ul>
+                                          <li><a href="{% url 'inboxMailViews' %}"><i class="fa fa-inbox"></i> inbox </a></li>
+                                          <li><a href="#"><i class="fa fa-send"></i> send</a></li>
+                                          <li><a href="#"><i class="fa fa-edit"></i> drafts (3)</a></li>
+                                       </ul>
+                                       <h4>labels</h4>
+                                       <ul>
+                                          <li><a href="#"><span class="circle-badge red"></span>work</a></li>
+                                          <li><a href="#"><span class="circle-badge green"></span>Office</a></li>
+                                          <li><a href="#"><span class="circle-badge blue"></span>Personal</a></li>
+                                       </ul>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="col-md-9 col-sm-8">
+                                 <div class="mail-read-box">
+                                    <div class="mail-view-header">
+                                       <div class="row">
+                                          <div class="col-md-9 col-xs-8 col-sm-7">
+                                             <div class="mail-view-header-left">
+                                                <h3> Donec vitae leo at sem lobortis.</h3>
+                                                <div class="mail-read-pro-img">
+                                                   <img src="{% static 'admin/assets/img/msg-3.png' %}" alt="Avatar" />
+                                                   <div class="mail-read-pro-details">
+                                                      <p class="sender-addr">John Doe (johnjoe@example.com)</p>
+                                                      <p class="mail-time"> 18 Sep. 2017 9:42 AM</p>
+                                                   </div>
+                                                </div>
+                                             </div>
+                                          </div>
+                                          <div class="col-md-3 col-xs-4 col-sm-5">
+                                             <div class="mail-view-header-right">
+                                                <button class="btn btn-info" type="button" data-toggle="tooltip" title="Print">
+                                                <i class="fa fa-print"></i>
+                                                </button>
+                                                <div class="btn-group">
+                                                   <button class="btn btn-info" type="button" data-toggle="tooltip" title="Delete">
+                                                   <i class="fa fa-trash-o"></i>
+                                                   </button>
+                                                   <button class="btn btn-info" type="button" data-toggle="tooltip" title="Reply">
+                                                   <i class="fa fa-reply"></i>
+                                                   </button>
+                                                   <button class="btn btn-info" type="button" data-toggle="tooltip" title="Forward">
+                                                   <i class="fa fa-share"></i>
+                                                   </button>
+                                                </div>
+                                             </div>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div class="mail-read-content">
+                                       <p>Hello Admin,</p>
+                                       <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                                       <p>porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a,. Phasellus nulla ut metus varius. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. ullamcorper ultricies nisi. Nam eget dui. rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel.</p>
+                                       <p>
+                                          Regards,
+                                          <br>
+                                          Jhon Doe
+                                       </p>
+                                       <div class="mail-attachment">
+                                          <p>
+                                             <i class="fa fa-paperclip"></i>
+                                             3 Attachments Founds
+                                          </p>
+                                          <ul>
+                                             <li>
+                                                <div class="attachment-box attachment-img">
+                                                   <div class="attachment-prev">
+                                                      <a href="#">
+                                                      <img src="{% static 'admin/assets/img/mail_attachment.jpg' %}" alt="Mail Attachment" />
+                                                      </a>
+                                                   </div>
+                                                   <div class="attachment-action">
+                                                      <a href="#">documentation.docx</a>
+                                                      <span>1842 KB</span>
+                                                   </div>
+                                                </div>
+                                             </li>
+                                             <li>
+                                                <div class="attachment-box attachment-icon">
+                                                   <div class="attachment-prev">
+                                                      <i class="fa fa-file-pdf-o"></i>
+                                                   </div>
+                                                   <div class="attachment-action">
+                                                      <a href="#">design.pdf</a>
+                                                      <span>230 KB</span>
+                                                   </div>
+                                                </div>
+                                             </li>
+                                             <li>
+                                                <div class="attachment-box attachment-icon">
+                                                   <div class="attachment-prev">
+                                                      <i class="fa fa-file-word-o"></i>
+                                                   </div>
+                                                   <div class="attachment-action">
+                                                      <a href="#">documentation.docx</a>
+                                                      <span>1842 KB</span>
+                                                   </div>
+                                                </div>
+                                             </li>
+                                          </ul>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- End Mail Compose Row -->
+               </div>
+            </div>
+         </section>
+         <!-- End Right Side Content -->
+      </div>
+{% endblock %}

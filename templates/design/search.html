@@ -1,0 +1,76 @@
+{% extends 'app/base-header.html' %}
+{% load static %}
+
+{% block title %} Search page {% endblock %}
+
+{% block body %}
+
+<div class="body-content outer-top-xs">
+  <div class='container'>
+    <div class='row single-product'>
+      <div class='col-md-12'>
+        <div class="search-result-container ">
+          <div id="myTabContent" class="tab-content category-list">
+            <div class="tab-pane active " id="grid-container">
+              <div class="category-product">
+                <div class="row">
+                  {% if search_obj %}
+                  {% for product in search_obj %}
+                  <div class="col-sm-6 col-md-6 wow fadeInUp">
+                    <div class="products">
+                      <div class="product">
+                        <div class="product-image">
+                          <div class="image">
+                            <a href="{% url 'productDetails_views' product.name %}">
+                              {% if not product.product_image %}
+                              <img src="{% static 'assets/images/demo.jpg' %}" alt="">
+                              {% else %}
+                              <img src="{{ product.product_image }}" alt="">
+                              {% endif %}
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <h4 class="well">Product Short Summary</h4>
+                    <h5>Product Name: {{ product.name }}</h5>
+                    <hr/>
+                    <h5>Product Category: {{ product.category }}</h5>
+                    <hr/>
+                    <h5>Product Model: {{ product.product_model }}</h5>
+                    <hr/>
+                    <h5>Product Brand: {{ product.brand_name }}</h5>
+                    <hr/>
+                    <h5>Product Size: {{ product.product_size }}</h5>
+                    <hr/>
+                    <h5>Product Price: ৳ {{ product.product_price }}</h5>
+                    <hr/>
+                    <h5>Product Color: {{ product.product_color }}</h5>
+                    <hr/>
+                  </div>
+                  <a href="{% url 'productDetails_views' product.name %}" class="btn btn-primary">
+					            <i class="fa fa-shopping-cart inner-right-vs"></i> ADD TO CART
+							     </a>
+                  <!-- /.item -->
+                  {% endfor %}
+                  {% endif %}
+                </div>
+                <!-- /.row -->
+              </div>
+              <!-- /.category-product -->
+            </div>
+          </div>
+        </div>
+        <!-- /.search-result-container -->
+      </div>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+   </div>
+  <!-- /.container -->
+</div>
+<!-- /.body-content -->
+{% endblock %}

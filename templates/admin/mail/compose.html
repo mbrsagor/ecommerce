@@ -1,0 +1,92 @@
+{% extends 'app/base_admin.html' %}
+{% load static %}
+
+{% block title %} Compose Mail {% endblock %}
+
+{% block body %}
+         <!-- Right Side Content Start -->
+         <section id="content" class="seipkon-content-wrapper">
+            <div class="page-content">
+               <div class="container-fluid">
+
+                  <!-- Breadcromb Row Start -->
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="breadcromb-area">
+                           <div class="row">
+                              <div class="col-md-6 col-sm-6">
+                                 <div class="seipkon-breadcromb-left">
+                                    <h3>Compose New Message</h3>
+                                 </div>
+                              </div>
+                              <div class="col-md-6 col-sm-6">
+                                 <div class="seipkon-breadcromb-right">
+                                    <ul>
+                                       <li><a href="index.html">home</a></li>
+                                       <li>mailbox</li>
+                                       <li>compose</li>
+                                    </ul>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- End Breadcromb Row -->
+
+                  <!-- Mail Compose Row Start -->
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="page-box">
+                           <div class="row">
+                              <div class="col-md-3 col-sm-4">
+                                 <div class="mailbox-left">
+                                    <a class="btn btn-success" href="{% url 'inboxMailViews' %}">
+                                    <i class="fa fa-inbox"></i>
+                                    back to inbox
+                                    </a>
+                                    <div class="mail-sidebar">
+                                       <ul>
+                                          <li><a href="{% url 'inboxMailViews' %}"><i class="fa fa-inbox"></i> inbox (12)</a></li>
+                                          <li><a href="{% url 'inboxMailViews' %}"><i class="fa fa-send"></i> send</a></li>
+                                          <li><a href="#"><i class="fa fa-edit"></i> drafts (3)</a></li>
+                                          <li><a href="#"><i class="fa fa-exclamation-circle"></i> spam</a></li>
+                                          <li><a href="#"><i class="fa fa-trash-o"></i> trash</a></li>
+                                       </ul>
+                                       <h4>labels</h4>
+                                       <ul>
+                                          <li><a href="#"><span class="circle-badge red"></span>work</a></li>
+                                          <li><a href="#"><span class="circle-badge green"></span>Office</a></li>
+                                          <li><a href="#"><span class="circle-badge blue"></span>Personal</a></li>
+                                       </ul>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="col-md-9 col-sm-8">
+                                 <div class="mail-editor compose-page">
+                                    <form>
+                                       <p>
+                                          <input type="text" placeholder="To" >
+                                       </p>
+                                       <p>
+                                          <input type="text" placeholder="Subject" >
+                                       </p>
+                                       <div id="summernote"></div>
+                                       <p>
+                                          <button type="submit" class="btn btn-success" > <i class="fa fa-envelope-o"></i>Send mail</button>
+                                          <button type="submit" class="btn btn-info" > <i class="fa fa-pencil"></i>drafts</button>
+                                          <button type="submit" class="btn btn-danger" > <i class="fa fa-trash-o"></i>delete</button>
+                                       </p>
+                                    </form>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- End Mail Compose Row -->
+               </div>
+            </div>
+          </section>
+         <!-- End Right Side Content -->
+{% endblock %}

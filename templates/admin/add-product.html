@@ -1,0 +1,214 @@
+{% extends 'app/base_admin.html' %}
+{% load static %}
+
+{% block title %} Add New Product {% endblock %}
+
+{% block body %}
+
+         <!-- Right Side Content Start -->
+         <section id="content" class="seipkon-content-wrapper">
+            <div class="page-content">
+               <div class="container-fluid">
+
+                  <!-- Breadcromb Row Start -->
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="breadcromb-area">
+                           <div class="row">
+                              <div class="col-md-6 col-sm-6">
+                                 <div class="seipkon-breadcromb-left">
+                                    <h3>Add new product</h3>
+                                 </div>
+                              </div>
+                              <div class="col-md-6 col-sm-6">
+                                 <div class="seipkon-breadcromb-right">
+                                    <ul>
+                                       <li><a href="{% url 'DashboardViews' %}">home</a></li>
+                                       <li>e-Commerce</li>
+                                       <li>Add Product</li>
+                                    </ul>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- End Breadcromb Row -->
+
+                  <!-- message framework -->
+                  {% if messages %}
+                   <div class="messages">
+                       {% for message in messages %}
+                       <div style="color:#f00; text-align:center, font-size:20px" {% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</div>
+                       {% endfor %}
+                   </div>
+                 {% endif %}
+                 <!-- end message framework -->
+
+                  <!-- Add Product Area Start -->
+                  <div class="row">
+                     <div class="col-md-12">
+                        <div class="page-box">
+                           <div class="row">
+                              <div class="col-md-12 col-sm-6">
+                                 <div class="add-product-form-group">
+                                    <h3>Product Info</h3>
+                                    <form method="POST">
+                                      {% csrf_token %}
+                                       <div class="row">
+                                          <div class="col-md-6">
+                                             <p>
+                                                <label>Product Name</label>
+                                                {{ product_form.name }}
+                                             </p>
+                                          </div>
+                                          <div class="col-md-3">
+                                            <p>
+                                              <label>Model Name</label>
+                                              {{ product_form.product_model }}
+                                            </p>
+                                          </div>
+                                          <div class="col-md-3">
+                                            <p>
+                                              <label>Serials Number (Optional)</label>
+                                              {{ product_form.product_serials }}
+                                            </p>
+                                          </div>
+                                       </div>
+                                       <div class="row">
+                                         <div class="col-md-3">
+                                            <p>
+                                               <label>Product Price</label>
+                                               {{ product_form.product_price }}
+                                            </p>
+                                         </div>
+                                         <div class="col-md-3">
+                                            <p>
+                                               <label>Discount Price</label>
+                                               {{ product_form.discount_price }}
+                                            </p>
+                                         </div>
+                                         <div class="col-md-2">
+                                            <p>
+                                               <label>Purchase Price</label>
+                                               {{ product_form.purchase_price }}
+                                            </p>
+                                          </div>
+                                          <div class="col-md-2">
+                                             <p>
+                                                <label>Product Warranty</label>
+                                                {{ product_form.product_warranty }}
+                                             </p>
+                                           </div>
+                                           <div class="col-md-2">
+                                              <p>
+                                                 <label>Dalivery System</label>
+                                                 {{ product_form.product_dalivery }}
+                                              </p>
+                                            </div>
+                                       </div>
+                                       <div class="row">
+                                          <div class="col-md-3">
+                                            <p>
+                                               <label>Product Category</label>
+                                               {{ product_form.category }}
+                                            </p>
+                                          </div>
+                                          <div class="col-md-3">
+                                             <p>
+                                                <label>Brand Name</label>
+                                                {{ product_form.brand_name }}
+                                             </p>
+                                          </div>
+                                          <div class="col-md-2">
+                                            <p>
+                                               <label>Avaiableable</label>
+                                               {{ product_form.avaiableable }}
+                                            </p>
+                                          </div>
+                                          <div class="col-md-2">
+                                             <p>
+                                                <label>Product  Color</label>
+                                                {{ product_form.product_color }}
+                                             </p>
+                                          </div>
+                                          <div class="col-md-2">
+                                             <p>
+                                                <label>Product Size</label>
+                                                {{ product_form.product_size }}
+                                             </p>
+                                          </div>
+                                       </div>
+                                       <div class="row">
+                                          <div class="col-md-6">
+                                             <p>
+                                                <label>Image URL</label>
+                                              {{ product_form.product_image }}
+                                             </p>
+                                          </div>
+                                          <div class="col-md-6">
+                                             <p>
+                                                <label>Gallery Image URL (Optional)</label>
+                                                {{ product_form.gallery_image1 }}
+                                             </p>
+                                          </div>
+                                          <div class="col-md-6">
+                                             <p>
+                                                <label>Gallery Image URL (Optional)</label>
+                                                {{ product_form.gallery_image2 }}
+                                             </p>
+                                          </div>
+                                          <div class="col-md-6">
+                                             <p>
+                                                <label>Gallery Image URL (Optional)</label>
+                                              {{ product_form.gallery_image3 }}
+                                             </p>
+                                          </div>
+                                          <div class="col-md-6">
+                                             <p>
+                                                <label>Gallery Image URL (Optional)</label>
+                                                {{ product_form.gallery_image4 }}
+                                             </p>
+                                          </div>
+                                          <div class="col-md-6">
+                                             <p>
+                                                <label>Gallery Image URL (Optional)</label>
+                                                {{ product_form.gallery_image5 }}
+                                             </p>
+                                          </div>
+                                       </div>
+                                       <div class="row">
+                                          <div class="col-md-12">
+                                             <p>
+                                                <label>Description</label>
+                                                {{ product_form.description }}
+                                             </p>
+                                          </div>
+                                       </div>
+                                       <div class="row">
+                                          <div class="col-md-12">
+                                             <p>
+                                                <button type="submit" class="btn btn-success" >
+                                                <i class="fa fa-check"></i>
+                                                add Product
+                                                </button>
+                                                <button type="reset" class="btn btn-danger" >
+                                                <i class="fa fa-times"></i>
+                                                Cancel
+                                                </button>
+                                             </p>
+                                          </div>
+                                       </div>
+                                    </form>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- End Add Product Area -->
+               </div>
+            </div>
+         </section>
+         <!-- End Right Side Content -->
+{% endblock %}
