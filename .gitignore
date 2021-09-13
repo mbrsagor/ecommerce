@@ -9,17 +9,11 @@ media/*
 .DS_Store
 node_modules
 bower_components
-.idea
-web/static/js/jsx_build/.module-cache
 /data
-/reload
 /static
-local_settings.py
-metastore_db
 venv/
-*settings/production.py
 .cache
-
+.env
 *.db
 *.pid
 
@@ -27,3 +21,4 @@ venv/
 .pylintrc
 tox.ini
 .vscode/*
+.idea
