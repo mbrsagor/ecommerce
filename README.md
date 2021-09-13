@@ -17,7 +17,7 @@ source venv/bin/activate
 pip install -r requirements.txt
 ```
 
-Then update your database information:
+Then update your database information `.env` file: Please copy all information from `.env-sample` file then pasts the `.env` file.
 
 ```python
 DATABASES = {
@@ -40,6 +40,17 @@ python manage.py migrate
 python manage.py createsuperuser
 python manage.py runserver
 ```
+
+If you run the project `Docker` 1st install docker in your development/projection environment then follow the instructions:
+```
+docker-compose build 
+docker-compose up
+```
+###### If you want to any migrate or something like that django command then follow the instructions:
+```
+docker-compose exec backend sh
+```
+
 
 ###### Happy coding :) ######
 
