@@ -1,5 +1,3 @@
-from django.conf import settings
-from django.conf.urls.static import static
 from django.urls import path
 from .views import *
 from django.conf.urls import handler404
@@ -22,8 +20,4 @@ urlpatterns = [
     path('users/delete-user/<int:id>', deleteUserView, name='deleteUser'),
 ]
 
-if settings.DEBUG:
-    urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-
-handler404 = error_404
+# handler404 = error_404
