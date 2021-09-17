@@ -61,3 +61,4 @@ docker-compose exec backend sh
 - Smart backend(Admin panel) with simple inventory management system.
 - Frontend and Backend both side mobile responsive.
 - Email sending configuration with SMTP.
+- API service like, Restful APIs
